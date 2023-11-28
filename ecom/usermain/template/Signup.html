@@ -1,0 +1,57 @@
+{% extends 'Login.html' %}
+
+{% block content %}
+<div id="outerdiv-singup">
+<div id="innerdiv-signup" class="col-8 col-md-6 col-lg-5"> <h1 id="heading-signup">create account</h1>
+<form action="" method="post" class="ms-5 mt-5">
+    {% csrf_token %} 
+ <label for="Firstname" class="signup-input-label">First Name</label><br>
+ <input type="text" name="Firstname" class="signup-input col-9 col-lg-11"> <br>
+ {% if errors.First_name %}
+  <h1 class="signup-errors">{{errors.First_name}}</h1>
+ {% endif %}
+ <label for="Secondname" class="signup-input-label">Second Name</label><br>
+ <input type="text" name="Secondname" class="signup-input col-9 col-lg-11"><br>
+
+ <label for="Number" class="signup-input-label">Number</label><br>
+ <input type="number" name="Number" class="signup-input col-9 col-lg-11" ><br>
+ {% if errors.Number %}
+ <h1 class="signup-errors">{{errors.Number}}</h1>
+{% endif %}
+ <label for="Email" class="signup-input-label">Email</label><br>
+ <input type="email" name="Email" class="signup-input col-9 col-lg-11"><br>
+ {% if errors.Email %}
+ <h1 class="signup-errors">{{errors.Email}}</h1>
+{% endif %}
+ <label for="Gender" class="signup-input-label">Gender :</label>
+ <input type="radio" name="Gender" value="Male" {% if Gender == "Male" %} checked {% endif %} class="gender-input"> <h5 class="gender-dis">Male</h5>
+<input type="radio" name="Gender" value="Female" {% if Gender == "Female" %} checked {% endif %} class="gender-input"> <h5 class="gender-dis">Female</h5> <br>
+ <label for="Address" class="signup-input-label">Address</label><br>
+ <input type="text" name="Address" class="signup-input col-9 col-lg-11"><br>
+ {% if errors.Address %}
+ <h1 class="signup-errors">{{errors.Address}}</h1>
+{% endif %}
+ <label for="Password1" class="signup-input-label">Password</label><br>
+  <input type="password" name="password1"  class="signup-input col-9 col-lg-11"> <br>
+  {% if errors.password %}
+  <h1 class="signup-errors">{{errors.password}}</h1>
+ {% endif %}
+ {% if errors.password1 %}
+  <h1 class="signup-errors">{{errors.password1}}</h1>
+ {% endif %}
+ <label for="Password2" class="signup-input-label">Re-enter Password</label><br>
+ <input type="password" name="password2" class="signup-input col-9 col-lg-11"> <br>
+ {% if errors.password_match %}
+ <h1 class="signup-errors">{{errors.password_match}}</h1>
+{% endif %} 
+
+ <input type="submit" value="sign up" id="signup-submit">
+
+
+
+</form>
+</div>
+</div>
+
+<h1 class="text-center" id="signup-to-login">Already have an account? <a href="{% url 'login' %}" style="text-decoration: none;"><span id="signup-to-login-span"> Sign in</span></a> </h1>
+{% endblock %}

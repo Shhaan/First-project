@@ -1,0 +1,326 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Make sure the body takes at least the full height of the viewport */
+}
+
+main {
+    flex: 1;
+}
+
+
+#Enter-footer{
+    background-color:  #E9E9E6;
+    height: 70px;
+    margin-top: 22px;
+ }
+
+
+#Pu-span{
+    font-family: 'Zen Dots', sans-serif;
+font-size: 52px;
+color: #4D4845;}
+#Pi-span{
+    font-family:  'Staatliches', sans-serif;
+   font-size: 38px;
+   color: #5C5754;
+}
+#div-log{
+   background-color:#8D6E63 ; 
+   height: 380px;
+   border-radius: 10px;
+   
+
+}
+.outerdiv{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+}
+@media (max-width: 768px) {
+#Pi-span{
+    font-size: 30px;
+}
+#Pu-span{
+    font-size: 44px;
+}
+.label{
+    font-size: 15px !important;
+}
+
+#div-log{
+    height: 350px;
+}
+.Inp-log{
+    height: 20px !important;
+}
+#new-qus{
+    font-size: 8px !important;
+}
+#log-signup-a{
+    font-size: 12px;
+}
+.signup-input-label{
+    font-size: 10px;
+}
+.gender-dis{
+    font-size: 10px !important;
+}
+.gender-input{
+    width: 10px;
+}
+#signup-submit{
+    width: 74px !important;
+    height: 24px !important;
+    font-size: 12px;
+    position: relative;
+    right: 17px;
+
+}
+.signup-errors{
+    font-size: 7px !important;
+}
+}
+
+#sign-in{
+    font-family:  'Staatliches', sans-serif;
+font-size: 45px;
+color: #E5E2E2;
+text-align: center;
+margin-top: 10px;
+}
+.label{
+    font-family: 'Zen Dots', sans-serif;
+    color: #CECECE;
+    font-size: 23px;
+    
+}
+.Inp-log{
+    background-color: #F5F5DC;
+    border: none;
+    color: #5C5754;
+    height: 35px;
+    
+
+}
+.Inp-log:focus{
+    outline: none;
+    background-color: #e7e7c2;
+    border-radius: 2px;
+    border: 1px solid #b7b7a2;
+}
+#log-sub{
+   background-color: #8386C1;
+    display: block;
+    margin: auto;
+    font-family: 'Zen Dots', sans-serif;
+    color: #F5F5DC;
+    border: none;
+    border-radius: 5px;
+    height: 34px;
+    width: 100px;
+}
+#hr2{
+ position: absolute;
+ width: 25%;
+ margin-left: 10%;
+ margin-top: 7px;
+}
+#hr1{
+ width: 25%;
+ position: absolute;
+right: 0;
+margin-right: 10%;
+margin-top: 7px;
+}
+#new-qus{
+    font-family: 'Murecho', sans-serif;
+    color: #838181;
+    font-size: 14px;
+    text-align: center;
+
+}
+#divid-div{margin-top: 30px;}
+
+#log-signup-a{
+text-decoration: none;
+color: #ffff;
+font-family: 'Murecho', sans-serif;
+font-size: 15px;
+}
+#log-signup-button{
+    border: none;
+    border-radius: 6px;
+    height: 26px;
+    background-color: #808080;
+
+
+}
+
+.log-foot-item{
+    font-size: 11px;
+    display: inline;
+    color: #404F99;
+}
+#log-footer-p{
+    margin-top: 22px;
+    font-size: 13px;
+}
+#heading-signup{
+    text-align: center;
+    font-family:  'Staatliches', sans-serif;
+    color: #CECECE;
+    margin-top:10px ;
+    font-size:28px;
+    
+}
+#innerdiv-signup{
+    font-family: 'Zen Dots', sans-serif;
+     border-radius: 10px;
+    background-color:#8D6E63 ;
+}
+#outerdiv-singup{
+    display: flex;
+    justify-content: center;
+    margin-top: 69px;
+
+}
+.signup-input-label{
+  font-family: inherit;
+  color: #CECECE;
+  margin-bottom: 10px;
+}
+.gender-dis{
+   font-family: 'Roboto', sans-serif;
+   color: #CECECE;
+   display: inline;
+   font-size: 14px;
+}
+
+
+.signup-input{
+    background-color: #F5F5DC;
+    border: none;
+    margin-bottom: 30px;
+    height: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.signup-input:focus{
+    outline: none;
+    background-color: #e7e7c2;
+    border-radius: 2px;
+    border: 1px solid #b7b7a2;
+}
+#signup-submit{
+    background-color: #8386C1;
+    border: none;
+    border-radius: 8px;
+    color: #ffff;
+    margin: auto;
+    margin-bottom: 30px;
+    height: 35px;
+    width: 145px;
+    display: block;
+}
+@media (min-width: 992px) {
+    .signup-input{
+        height: 40px;
+    }
+    #verification-submit{
+        width: 30% !important;
+    }
+
+}
+#signup-to-login-span{
+color: black;
+font-family: 'Zen Dots', sans-serif;
+text-decoration: none;
+}
+#signup-to-login{
+    color: #878080;
+    font-family: 'Zen Dots', sans-serif;
+    margin-top: 35px;
+    margin-bottom: 33px;
+    font-size: 12px;
+}
+#verification-innerdiv{
+    background-color:#8D6E63 ;
+    border-radius: 5px;
+    font-family: 'Staatliches', sans-serif
+
+}
+#verification-outerdiv{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    
+}
+#verification-head1{
+    font-family:  inherit;
+        color: #CECECE;
+ font-size: 30px;
+ margin-top: 10px;
+    }
+#verification-head2{
+    font-size: 25px;
+    margin-top: 32px;
+    text-align: left;
+    margin-left: 40px;
+    color: #CECECE;
+}
+.verification-input{
+    width: 33px;
+    margin-left: 5px;
+    border-radius: 6px;
+    height: 30px;
+    border: none;
+    background-color: #F5F5DC;
+}
+.verification-input:focus{
+    outline: none;
+    background-color: #e7e7c2;
+    border-radius: 8px;
+    border: 1px solid #b7b7a2;
+}
+#verification-resend-otp{
+    margin-left: 21px;
+    display: inline-block;
+    font-size: 12px;
+    position: relative;
+    top: 7px;
+}
+#verification-submit{
+    margin-top: 70px !important;
+    background-color: #8386C1;
+    border: none;
+    border-radius: 8px;
+    color: #ffff;
+    margin: auto;
+    margin-bottom: 30px;
+    height: 35px;
+    width: 50%;
+    display: block;
+}
+@media (max-width:567px){
+    .verification-input{
+        height: 23px;
+        width: 19px;
+    
+    }
+    #verification-head2{
+        margin-left: 10px;
+        font-size: 18px;
+    
+    }
+}
+
+.signup-errors{
+font-weight: 800;
+    font-family: 'Roboto';
+    font-size: 13px;
+    color: #eb4343;
+    margin-top: -20px}
