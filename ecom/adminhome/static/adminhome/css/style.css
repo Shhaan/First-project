@@ -1,0 +1,98 @@
+body{
+    background-color: #222222;
+}
+#div-log{
+   background-color:#E5E2E2 ; 
+   height: 380px;
+   border-radius: 10px;
+   
+
+}
+.outerdiv{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+}
+@media (max-width: 768px) {
+    #Pi-span{
+        font-size: 30px !important;
+    }
+    #Pu-span{
+        font-size: 44px !important;
+    }
+.label{
+    font-size: 15px !important;
+}
+
+#div-log{
+    height: 350px;
+}
+.Inp-log{
+    height: 20px !important;
+    
+}
+#log-sub{
+width: 100px !important;
+height: 30px !important;
+}
+}
+
+#sign-in{
+    font-family:  'Staatliches', sans-serif;
+font-size: 45px;
+color: black;
+text-align: center;
+
+}
+
+.label{
+    font-family: 'Zen Dots', sans-serif;
+    color: #000000;
+    font-size: 23px;
+    
+}
+.Inp-log{
+    background-color: #BAB9B9;
+    border: none;
+    color: #000000;
+    height: 35px;
+    
+
+}
+.Inp-log:focus{
+    outline: none;
+    background-color: #969292;
+    border-radius: 2px;
+    border: 1px solid #b7b7a2;
+}
+#log-sub{
+   background-color: #000000;
+    display: block;
+    margin: auto;
+    font-family: 'Zen Dots', sans-serif;
+    color: #E5E2E2;
+    border: none;
+    border-radius: 5px;
+    height: 44px;
+    width: 150px;
+}
+#Pu-span{
+    font-family: 'Zen Dots', sans-serif;
+font-size: 52px;
+color: #E5E2E2;}
+#Pi-span{
+    font-family:  'Staatliches', sans-serif;
+   font-size: 38px;
+   color: #CECECE;
+}
+#nav-login{
+    width: 100%;
+    background-color: #000000;
+    height: 109px;
+}
+#message{
+    color: rgb(218, 25, 25);
+    font-size: 15px;
+    text-align: center;
+}

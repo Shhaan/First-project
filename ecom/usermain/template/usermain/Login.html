@@ -7,9 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Kanit:wght@300&family=Kantumruy+Pro:wght@300&family=Murecho:wght@300&family=Roboto:wght@300&family=Staatliches&family=Zen+Dots&display=swap" rel="stylesheet">
-       <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+       <link rel="stylesheet" type="text/css" href="{% static 'usermain/css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="icon" href="{% static 'image/icon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'usermain/image/icon.png' %}" type="image/x-icon">
     <title>Purepicks | Best Perfume available @ india | Best sellers</title>
 
 </head>
@@ -22,7 +22,7 @@
                 <h1 id="sign-in">sign-in</h1>
             <form action="" method="post">
                 {% for i in messages %}
-                <h1>{{i}}</h1>
+                <h1 id="#message">{{i}}</h1>
                 {% endfor %}
                 {% csrf_token %} 
                <label class="label ms-5 mt-5 mb-2" for="Email">Email</label> <br>
@@ -38,7 +38,7 @@
   <div id="divid-div">
     <hr id="hr1" class="container">   <hr id="hr2" class="container">
     <h2 id="new-qus">New to Purepicks ?</h2></div>
-   <div class="text-center mt-3"><button id="log-signup-button" class="col-sm-5 col-md-3 col-lg-2"><a id="log-signup-a" href="{% url 'register' %}">Create new account</a></button></div>
+   <div class="text-center mt-3"><button id="log-signup-button" class="col-sm-5 col-md-3 col-lg-2"><a id="log-signup-a" href="{% url 'usermain:register' %}">Create new account</a></button></div>
 {% endblock %} </main>
  <footer id="Enter-footer" class="text-center">
    <h3 class="log-foot-item me-3">Privacy Notice</h3>

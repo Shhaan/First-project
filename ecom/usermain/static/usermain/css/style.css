@@ -324,3 +324,8 @@ font-weight: 800;
     font-size: 13px;
     color: #eb4343;
     margin-top: -20px}
+    #message{
+        color: rgb(218, 25, 25);
+        font-size: 15px;
+        text-align: center;
+    }

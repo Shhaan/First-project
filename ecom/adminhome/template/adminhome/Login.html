@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purepicks | Admin panel | login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Kanit:wght@300&family=Kantumruy+Pro:wght@300&family=Murecho:wght@300&family=Roboto:wght@300&family=Staatliches&family=Zen+Dots&display=swap" rel="stylesheet">
+      
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'usermain/image/icon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'adminhome/css/style.css' %}">
+</head>
+<body>
+ <nav id="nav-login">
+    <h1 class="text-center pt-4"><span id="Pu-span">Pure</span><span id="Pi-span">picks</span> </h1>
+ </nav>
+    <main>
+       
+        <div class="outerdiv">
+                <div class="col-8 col-md-5 mt-5"  id="div-log">
+                    <h1 id="sign-in">sign-in</h1>
+                <form action="" method="post">
+                    {% for i in messages %}
+                    <h1 id="message">{{i}}</h1>
+                    {% endfor %}
+                    {% csrf_token %} 
+                   <label class="label ms-5 mt-5 mb-2" for="Email">Email</label> <br>
+                   <input class="Inp-log ms-5 col-sm-9 col-7" name="Email-log" type="text"><br>
+                   <label class="label ms-5 mt-3 mb-2" for="Password">Password</label><br>
+                   <input class="Inp-log ms-5 col-sm-9 col-7" name="Password-log" type="password"><br>
+                    <input type="submit" class="mt-4" id="log-sub" value="Login">
+    
+                </form>
+    
+            </div>
+        </div>
+         </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>

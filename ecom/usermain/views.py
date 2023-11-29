@@ -7,20 +7,22 @@ from .models import Users
 from django.contrib import messages
 from django.contrib.auth import authenticate,login
 # Create your views here.
-def login(request):
+def user_login(request):
+    if request.user.is_authenticated:
+        return redirect('usermain:home')
     if request.method == 'POST':
         email = request.POST['Email-log']
         password = request.POST['Password-log']
-        user = authenticate(username=email, password=password)
+        user = authenticate(request, email=email, password=password)
 
         if user is not None :
-            login(request)
-            return redirect('home')  # Replace with your actual home URL
+            login(request,user)
+            return redirect('usermain:home')  # Replace with your actual home URL
         else:
             messages.info(request, 'Enter a valid user')
-            return redirect('login')
+            return redirect('usermain:login')
         
-    return render(request,'Login.html')
+    return render(request,'usermain/Login.html')
 def register(request):
     error = {}
     if request.method == 'POST':
@@ -45,7 +47,7 @@ def register(request):
         if Number is None or not Number:
             error['Number'] = 'Number must be entered'
         else:
-            Number_exist = Users.object.filter(Number=Number).exists()
+            Number_exist = Users.objects.filter(Number=Number).exists()
             if Number_exist:
                 error['Number'] = 'Number has been taken'
             elif len(str(Number)) != 10  :
@@ -61,9 +63,9 @@ def register(request):
 
         if not error:
             # Continue with user registration...
-           user = Users.object.create_user(
+           user = Users.objects.create_user(
                 first_name=First_name,
-                second_name=Second_name,
+                last_name=Second_name,
                 Number=Number,
                 email=Email,
                 Gender=Gender,
@@ -71,15 +73,17 @@ def register(request):
                 password=password1
             )
            
-           url_success = reverse_lazy('verification')
-           return redirect(url_success)  # Redirect to a success page
-    
-    return render(request, 'Signup.html', {'errors': error})
+           user = authenticate(request, email=Email, password=password1)
+           if user is not None:
+                login(request, user)
+                url_success = reverse('usermain:verification')
+                return redirect(url_success) 
+        
+    return render(request, 'usermain/Signup.html', {'errors': error})
 def verification(request):
     
-    return render(request,'Verification.html')
+    return render(request,'usermain/Verification.html')
 def home(request):
-    
-    
-    
-    return render(request,'Home.html')
+    if request.user.is_authenticated == False:
+        return redirect('usermain:login')
+    return render(request,'usermain/Home.html')

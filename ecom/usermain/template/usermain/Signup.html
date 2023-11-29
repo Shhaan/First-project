@@ -1,4 +1,4 @@
-{% extends 'Login.html' %}
+{% extends 'usermain/Login.html' %}
 
 {% block content %}
 <div id="outerdiv-singup">
@@ -53,5 +53,5 @@
 </div>
 </div>
 
-<h1 class="text-center" id="signup-to-login">Already have an account? <a href="{% url 'login' %}" style="text-decoration: none;"><span id="signup-to-login-span"> Sign in</span></a> </h1>
+<h1 class="text-center" id="signup-to-login">Already have an account? <a href="{% url 'usermain:login' %}" style="text-decoration: none;"><span id="signup-to-login-span"> Sign in</span></a> </h1>
 {% endblock %}

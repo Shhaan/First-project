@@ -22,15 +22,17 @@ class UserManager(BaseUserManager):
         return self.create_user(email, first_name, password, **extra_fields)
 class Users(AbstractUser):
     username = None
-    first_name = models.CharField(("Firts_name"), max_length=20,null=False) 
-    last_name = models.CharField(("Second_name"), max_length=50)
-    email = models.EmailField(("Email"), max_length=254,unique=True)
+    last_login = None
+    first_name = models.CharField(("firts_name"), max_length=20,null=False)
+    last_name = models.CharField(("second_name"), max_length=50)
+    email = models.EmailField(("email"), max_length=254,unique=True)
     Number = models.BigIntegerField(unique=True)
     Address = models.TextField(("Address"),null=False)
     Gender = models.CharField(("Gender"), max_length=20,null=True)
     
     USERNAME_FIELD ='email'
-    REQUIRED_FIELDS = ['first_name']
+    REQUIRED_FIELDS = ['first_name','Number',]
     
+    objects = UserManager()
     def __str__(self) :
-        return self.First_name 
+        return self.first_name 
