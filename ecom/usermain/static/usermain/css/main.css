@@ -62,28 +62,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*//////////////////////////////////////////////////////////////////
 [ LOADDING ]*/
-.animsition-loading-1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.loader05 {
-  width: 56px;
-  height: 56px;
-  border: 4px solid #717fe0;
-  border-radius: 50%;
-  position: relative;
-  animation: loader-scale 1s ease-out infinite;
-  top: 50%;
-  margin: -28px auto 0 auto; 
-}
-
 
 @media (max-width: 575px) {
   .btn-back-to-top {
@@ -3206,7 +3184,7 @@ input.num-product::-webkit-inner-spin-button {
 .main-menu li:hover .sub-menu {
   display: block;}
 #image-baground{
-  background-image: url('/static/usermain/images/baground.jpeg') }
+  background-image: url('/static/usermain/images/baground.jpg') }
   #brand-name{
 
     font-family: 'Zen Dots', sans-serif;
