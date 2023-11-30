@@ -138,4 +138,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'adminhome', 'static'),
     os.path.join(BASE_DIR, 'usermain', 'static'),
 ]
+
 AUTH_USER_MODEL = 'usermain.Users'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+
+MEDIA_ROOT  = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
