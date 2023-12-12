@@ -21,11 +21,11 @@ main {
 #Pu-span{
     font-family: 'Zen Dots', sans-serif;
 font-size: 52px;
-color: #4D4845;}
+color: #343434;}
 #Pi-span{
     font-family:  'Staatliches', sans-serif;
    font-size: 38px;
-   color: #5C5754;
+   color: #484848;
 }
 #div-log{
    background-color:#8D6E63 ; 
@@ -329,3 +329,4 @@ font-weight: 800;
         font-size: 15px;
         text-align: center;
     }
+

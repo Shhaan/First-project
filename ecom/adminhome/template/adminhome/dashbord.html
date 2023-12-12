@@ -1,11 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purepicks | Admin panel</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+{% load static %}
+  <title>Purepicks | admin panel</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+   {% block ajax %} {% endblock %}
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Kanit:wght@300&family=Kantumruy+Pro:wght@300&family=Murecho:wght@300&family=Roboto:wght@300&family=Staatliches&family=Zen+Dots&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'adminhome/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'adminhome/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'adminhome/assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'adminhome/assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'adminhome/assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'adminhome/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'adminhome/assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+  
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'adminhome/assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
+
 <body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      
+      <i class="bi bi-list toggle-sidebar-btn" style="color: #CECECE;"></i>
+      <a href="{% url 'usermain:home' %}"  class="ps-5 logo d-flex align-items-center d-none d-md-block">
+        <h3 id="h1-home" class="text-center text-white m-0">Home </h3>
+
+      </a>
+    </div><!-- End Logo -->
+   
+      <h1 class="m-auto"><span id="Pu-span">Pure</span><span id="Pi-span">picks</span> </h1>
     
+    
+
+    {% block ji %}
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center" style="justify-content: end;">
+        
+        <li class="nav-item dropdown pe-3 d-none d-md-block">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0 " href="{% url 'adminhome:admin_logout' %}" >
+            
+            <span class=" pe-2 ps-2 " style="color: #CECECE;">Log out</span>
+            <svg xmlns="http://www.w3.org/2000/svg" style="color: #CECECE;" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+              <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+            </svg>
+          </a>
+
+          
+    </nav><!-- End Icons Navigation -->
+    {% endblock %}
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+  <h3 class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+  </svg> {{user.first_name}}</h3>
+
+  <hr class="container-fluid">
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="{% url 'adminhome:customer' %}">
+          <i class="bi bi-person-fill text-black"></i><span>Customer</span>
+        </a>
+      
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="{% url 'adminhome:admin_login' %}">
+          <i class="bi bi-basket-fill text-black"></i><span>Products</span>
+        </a>
+      
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="{% url 'adminhome:admin_login' %}">
+          <i class="bi bi-card-list text-black"></i><span>Order details</span>
+        </a>
+      
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="{% url 'adminhome:admin_login' %}">
+          <i class="bi bi-tag-fill text-black"></i><span>Brand</span>
+        </a>
+      
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="{% url 'adminhome:admin_login' %}">
+          <i class="bi bi-clipboard-data text-black"></i><span>Category</span>
+        </a>
+      
+      </li>
+      <li class="nav-item log" >
+        <a class="nav-link collapsed"  href="{% url 'usermain:home' %}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="16" fill="currentColor" class="pe-1 bi bi-house-door-fill text-black" viewBox="0 0 16 16">
+            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+          </svg>
+            Home
+          
+        </a>
+      
+      </li>
+      <li class="nav-item log" >
+        <a class="nav-link collapsed"  href="{% url 'adminhome:admin_logout' %}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="16" fill="currentColor" class="pe-1 bi bi-box-arrow-right text-black" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+          </svg>
+            Log out
+          
+        </a>
+      
+      </li>
+     
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" style="overflow: auto;" class="main">
+
+   
+
+    <section class="section dashboard">
+      {% block content %}
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <!-- Column Chart -->
+            <div id="columnChart"></div>
+
+            
+         
+
+          </div>
+        </div>
+      </div>
+       
+       
+
+    
+      {% endblock %}
+    </section>
+
+  </main><!-- End #main -->
+
+  
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'adminhome/assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'adminhome/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'adminhome/assets/vendor/chart.js/chart.umd.js' %}"></script>
+  <script src="{% static 'adminhome/assets/vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'adminhome/assets/vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'adminhome/assets/vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'adminhome/assets/vendor/tinymce/tinymce.min.js' %}"></script>
+  <script src="{% static 'adminhome/assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'adminhome/assets/js/main.js' %}"></script>
+
 </body>
+
 </html>

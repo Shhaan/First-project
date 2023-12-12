@@ -268,15 +268,149 @@
     
     /*==================================================================
     [ Show modal1 ]*/
-    $('.js-show-modal1').on('click',function(e){
-        e.preventDefault();
-        $('.js-modal1').addClass('show-modal1');
-    });
+   $('.js-show-modal1').on('click', function (e) {
+    e.preventDefault();
 
-    $('.js-hide-modal1').on('click',function(){
-        $('.js-modal1').removeClass('show-modal1');
-    });
+    // Get product information from data attributes
+    var productName = $(this).data('product-name');
+    var productPrice = $(this).data('product-price');
+    var productDes = $(this).data('product-des');
+    var productImages = $(this).data('product-images').split(',');
+    
+    // Set product information in the modal
+    $('#quick-view-name').text(productName);
+    $('#quick-view-price').text(productPrice);
+    $('#quick-view-des').text(productDes);
+    $('#product_id').val(productName);
+
+    // Clear existing images in the modal gallery
+    $('#modal-image-gallery').empty();
+
+    // Populate modal gallery with product images
+    for (var i = 0; i < productImages.length; i++) {
+        if (i == 1) {
+            $('#modal-image-gallery').append(`
+                <div class="item-slick3" data-thumb="${productImages[i]}">
+                    <div class="wrap-pic-w pos-relative">
+                        <img src="${productImages[i]}" alt="IMG-PRODUCT">
+                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${productImages[i]}">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                    </div>
+                </div>
+            `);
+        } else {
+            // Hide the element at index 1
+            $('#modal-image-gallery').append(`
+                <div class="item-slick3" style="display: none;" data-thumb="${productImages[i]}">
+                    <div class="wrap-pic-w pos-relative">
+                        <img src="${productImages[i]}" alt="IMG-PRODUCT">
+                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${productImages[i]}">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                    </div>
+                </div>
+            `);
+        }
+    }
+    // Show the modal
+    $('#quick-view-modal').addClass('show-modal1');
+});
+
+$('.js-hide-modal1').on('click', function () {
+    // Hide the modal
+    $('#quick-view-modal').removeClass('show-modal1');
+});
+
+
+
 
 
 
 })(jQuery);
+
+
+// brand over display
+const container = document.getElementById('brandContainer');
+const scrollAmount = 300; // Adjust the scroll amount as needed
+	
+			function scrollBrandImages(direction) {
+				if (direction === 'prev') {
+					container.scrollLeft -= scrollAmount;
+				} else if (direction === 'next') {
+					container.scrollLeft += scrollAmount;
+				}
+			}
+
+ 
+// category over display
+const categoryContainer = document.getElementById('categoryContainer');
+const categoryScrollAmount = 300; // Adjust the scroll amount as needed
+
+function scrollCategory(direction) {
+if (direction === 'prev') {
+    categoryContainer.scrollLeft -= categoryScrollAmount;
+} else if (direction === 'next') {
+    categoryContainer.scrollLeft += categoryScrollAmount;
+}
+}
+
+
+// product image zoom in
+
+function Imgzoom(imgid){
+    let img = document.getElementById(imgid)
+    let lens = document.getElementById('lens')
+    lens.style.backgroundImage = `url(${img.src})`
+
+     let ratio = 3
+
+     lens.style.backgroundSize = (img.width * ratio) + 'px ' + (img.height * ratio) + 'px';
+     img.addEventListener('mousemove',movelens)
+     lens.addEventListener('mousemove',movelens)
+     img.addEventListener('touchmove',movelens)
+
+     
+
+     function movelens(){
+     let pos = getcursor()
+     console.log('pos',pos)
+   
+     let positionleft = pos.x - (lens.offsetWidth / 2)
+     let positiontop = pos.y - (lens.offsetHeight / 2)
+
+     lens.style.left = positionleft + 'px';
+     lens.style.top = positiontop + 'px';
+
+     if(positionleft < 0){
+        positionleft = 0
+     }
+
+     if(positiontop < 0){
+        positiontop = 0
+     }
+
+     if(positionleft > img.width  - lens.offsetWidth / 3){
+        positionleft = img.width  - lens.offsetWidth / 3
+     }
+     if(positiontop > img.height  - lens.offsetHeight / 3){
+        positiontop = img.height  - lens.offsetHeight / 3
+     }
+      
+     lens.style.backgroundPosition = '-' + (pos.x * ratio) + 'px ' + '-' + (pos.y * ratio) + 'px';
+    }
+
+     function getcursor() {
+        let e =  window.event;
+        let bounds = img.getBoundingClientRect();
+        let x = e.pageX - bounds.left;
+        let y = e.pageY - bounds.top;
+        
+        x = x -window.pageXOffset;
+        y = y -window.pageYOffset;
+
+        return { 'x': x, 'y': y };
+    }
+}
+
+Imgzoom('img-zoom')

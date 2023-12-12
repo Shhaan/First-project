@@ -1,0 +1,59 @@
+{% extends 'adminhome/dashbord.html' %}
+{% block content %}
+
+
+
+<div class="pagetitle">
+
+<form class="form-inline " action="{% url 'adminhome:customer' %}" method="get">
+  
+  <div class="input-group" style="justify-content: center;    align-items: center;">
+      
+      <input  type="search" id="search-input" placeholder="Search" name="search"  >
+      <div class="input-group-append">
+          <button type="submit" id="search-button"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="23" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+          </svg></button>
+      </div>
+  </div>
+ </form></div>
+  
+ 
+ 
+
+ <div class="table-responsive mt-12">
+  <table class="table">
+      <thead>
+          <tr>
+              <th scope="col">FIRST NAME</th>
+              <th scope="col">EMAIL ADDRESS</th>
+              <th scope="col">ADDRESS</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Action</th>
+              <th></th>
+          </tr>
+      </thead>
+      <tbody>
+        
+          {% for i in customer %}
+              <tr>
+                  <td class="t-body-cutomer">{{ i.first_name }}</td>
+                  <td class="t-body-cutomer">{{ i.email }}</td>
+                  <td class="t-body-cutomer">{{ i.Address }}</td>
+                  <td class="t-body-cutomer">{{ i.Number }}</td>
+                  {% if i.is_blocked == False %}
+                      <td class="t-body-cutomer"><a id="Block-user" href="{% url 'adminhome:block-user' user_id=i.id %}">Block</a></td>
+                  {% else %}
+                      <td class="t-body-cutomer"><a id="unblock-user" href="{% url 'adminhome:unblock-user' user_id=i.id %}">Unblock</a></td>
+                  {% endif %}
+              </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+
+
+
+    
+    
+{% endblock %}

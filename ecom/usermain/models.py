@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser,BaseUserManager
+
 class UserManager(BaseUserManager):
     def create_user(self, email, first_name, password=None, **extra_fields):
         if not email:
@@ -29,7 +30,8 @@ class Users(AbstractUser):
     Number = models.BigIntegerField(unique=True)
     Address = models.TextField(("Address"),null=False)
     Gender = models.CharField(("Gender"), max_length=20,null=True)
-    
+    otp = models.CharField(max_length=6, blank=True, null=True)
+    is_blocked = models.BooleanField(default=False)
     USERNAME_FIELD ='email'
     REQUIRED_FIELDS = ['first_name','Number',]
     
