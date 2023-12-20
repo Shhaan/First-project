@@ -1,0 +1,38 @@
+{% extends 'adminhome/dashbord.html' %}
+
+{% block content %}
+<h1 class="text-center mb-5" id="heading-product">Add Brand</h1>
+
+<form method="post" action="{% url 'admincrud:addbrand'  %}" enctype="multipart/form-data" class="styled-form">
+  {% csrf_token %}
+
+  
+
+  <label for="brand_name" class="styled-label">Brand Name:</label> <br>
+  <input type="text" name="brand_name" class="styled-input">
+  {% if errors.name %}
+<h1 class="signup-errors">{{ errors.name }}</h1>
+{% endif %}
+{% if errors.exist_brand %}
+<h1 class="signup-errors">{{ errors.exist_brand }}</h1>
+{% endif %}
+<br>
+  <label for="images">Brand image:</label><br>
+<input type="file" class="file-image" name="brand_image" accept="image/*" >
+  
+{% if errors.image %}
+<h1 class="signup-errors">{{ errors.image }}</h1>
+{% endif %}
+<br>
+<br>
+
+
+  <button type="submit" style="display: block;margin: auto;" class="styled-button">Submit</button>
+
+</form>
+{% endblock %}
+
+{% block link %}
+{% load static %}
+<link href="{% static 'admincrud/css/style.css' %}" rel="stylesheet">
+  {% endblock %}

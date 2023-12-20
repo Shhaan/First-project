@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_totp',
     'adminhome',
     'usermain',
+    'admincrud',
+    'productdetail',
+    'userprofile',
+    'userorder',
   
 ]
 
@@ -70,6 +74,14 @@ TEMPLATES = [
         'DIRS': [
            os.path.join(BASE_DIR, 'adminhome', 'template'),
            os.path.join(BASE_DIR, 'usermain', 'template'),
+           os.path.join(BASE_DIR, 'admincrud', 'template'),
+           os.path.join(BASE_DIR, 'productdetail', 'template'),
+           os.path.join(BASE_DIR, 'userprofile', 'template'),
+           os.path.join(BASE_DIR, 'userorder', 'template'),
+           
+           
+           
+           
             
             
             ],
@@ -147,6 +159,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'adminhome', 'static'),
     os.path.join(BASE_DIR, 'usermain', 'static'),
+    os.path.join(BASE_DIR, 'admincrud', 'static'),
+    os.path.join(BASE_DIR, 'productdetail', 'static'),
+    os.path.join(BASE_DIR, 'userprofile', 'static'),
+    os.path.join(BASE_DIR, 'userorder', 'static'),
+    
+    
+    
 ]
 
 AUTH_USER_MODEL = 'usermain.Users'

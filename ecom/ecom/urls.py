@@ -23,5 +23,13 @@ urlpatterns = [
     path('d-admin/', admin.site.urls),
     path('',include(('usermain.urls' ,'usermain'),namespace='usermain')),
     path('admin-panel/',include(('adminhome.urls' ,'adminhome'),namespace='adminhome')),
+    path('admin-panel/',include(('admincrud.urls' ,'admincrud'),namespace='admincrud')),
+    path('',include(('productdetail.urls' ,'productdetail'),namespace='productdetail')),
+    path('profile/',include(('userprofile.urls' ,'userprofile'),namespace='userprofile')),
+    path('',include(('userorder.urls' ,'userorder'),namespace='userorder')),
+    
+    
+    
+    
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

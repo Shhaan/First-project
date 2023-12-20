@@ -20,8 +20,9 @@
   
  
  
+ <h1 class="  mt-4" id="heading-product">All customer</h1>
 
- <div class="table-responsive mt-12">
+ <div class="table-responsive mt-7">
   <table class="table">
       <thead>
           <tr>
@@ -57,3 +58,7 @@
     
     
 {% endblock %}
+{% block link %}
+{% load static %}
+<link href="{% static 'admincrud/css/style.css' %}" rel="stylesheet">
+  {% endblock %}

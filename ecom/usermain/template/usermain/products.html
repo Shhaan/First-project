@@ -1,6 +1,7 @@
 {% extends 'usermain/Home.html' %}
 
 {%  block content %}
+
 <section class="bg0 p-t-23 p-b-140 mt-5">
 		<div class="container">
 			<div class="row isotope-grid">
@@ -25,7 +26,7 @@
 			
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l">
-									<a href="{% url 'usermain:products-detail' product_slug=product.slug %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="{% url 'productdetail:brand' brand_name=product.brand.brand_name %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										{{ product.brand.brand_name }} 
 									</a>
 

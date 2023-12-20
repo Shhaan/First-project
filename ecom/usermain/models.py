@@ -38,3 +38,12 @@ class Users(AbstractUser):
     objects = UserManager()
     def __str__(self) :
         return self.first_name 
+class Review(models.Model):
+    product = models.ForeignKey('adminhome.Products', on_delete=models.CASCADE,related_name='product_review')
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    rating = models.IntegerField()  
+    comment = models.TextField()
+     
+
+    def __str__(self):
+        return f"{self.user.first_name}'s Review for {self.product.product_name}"

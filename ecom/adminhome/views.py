@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import *
 from usermain.models import Users
 from django.db.models import *
+from django.views.decorators.cache import never_cache
 # Create your views here.
 def admin_login(request):
     if request.user.is_authenticated and request.user.is_superuser:
@@ -21,19 +22,19 @@ def admin_login(request):
             messages.info(request, 'Enter a valid user')
             return redirect('adminhome:admin_login')
     return render(request,'adminhome/Login.html')
+@never_cache
 def admin_panel(request):
     if   request.user.is_superuser == False:
         return redirect('adminhome:admin_login')
     
-    order = Order.objects.count()
-    context = {'order':order}
-    return render(request,'adminhome/dashbord.html',context)
+    return render(request,'adminhome/dashbord.html')
 def admin_logout(request):
     logout(request)
     return redirect('adminhome:admin_login')
-
+@never_cache
 def customer(request):
-    
+    if   request.user.is_superuser == False:
+        return redirect('adminhome:admin_login')
     
     search = request.GET.get('search','')
     

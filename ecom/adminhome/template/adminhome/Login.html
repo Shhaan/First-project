@@ -28,9 +28,9 @@
                     {% endfor %}
                     {% csrf_token %} 
                    <label class="label ms-5 mt-5 mb-2" for="Email">Email</label> <br>
-                   <input class="Inp-log ms-5 col-sm-9 col-7" name="Email-log" type="text"><br>
+                   <input class="Inp-log ms-5 col-sm-9 col-7" name="Email-log" required type="text"><br>
                    <label class="label ms-5 mt-3 mb-2" for="Password">Password</label><br>
-                   <input class="Inp-log ms-5 col-sm-9 col-7" name="Password-log" type="password"><br>
+                   <input class="Inp-log ms-5 col-sm-9 col-7" name="Password-log" required type="password"><br>
                     <input type="submit" class="mt-4" id="log-sub" value="Login">
     
                 </form>

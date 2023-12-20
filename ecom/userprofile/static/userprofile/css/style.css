@@ -1,0 +1,85 @@
+#personal-info-div{
+ margin-top: 6rem;
+
+}
+
+#per-head{
+    font-family: 'Roboto';
+    font-size: 3vw;
+    font-weight: 700;
+    margin-bottom: 32px;
+}
+
+@media (min-width:768px){
+    .per-name{
+        height: 40px !important;
+    }
+
+    #per-head{
+        font-size: 2vw;
+    }
+}
+#per-detail-div{
+  background-color: #E9E9E6;
+    height: 400px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+#per-sidebar{
+    height: 260px;
+    background-color: #8D6E63;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+#per-div-flex{
+    
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+}
+@media (max-width:567px){
+
+    .per-sidebar-labels{
+        font-size: 10px;
+    }
+   
+
+    #per-sidebar{
+        height: 179px;}
+        #per-detail-div{
+             
+              height: 300px;}
+              #per-user-name{
+                font-size: 10px;
+              }
+              .per-side-lab{
+                font-size: 8px !important;
+            }
+}
+
+.per-name{
+
+    height: 30px;background-color: burlywood; border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: black;
+}
+@media (max-width:768px){
+    .per-side-lab{
+        font-size: 10px;
+    }
+}
+.per-edit-error{
+    display: inline-block;
+    position: relative;
+    left: -98px;
+}
+#per-user-name{
+
+    font-size: 13px !important;
+}

@@ -1414,8 +1414,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .wrap-slick3-arrows {
   position: absolute;
   z-index: 100;
-  width: 83.333333%;
-  right: 0;
+  width: 79.333333%;
+    right: 14px;
   top: calc(50% - 20px);
 }
 
@@ -3424,22 +3424,117 @@ color: #fff;}
     left: 84px;
 }
 
-#img-container:hover      #lens{
+ 
+.slick3 {
+  display: flex;
+  overflow: hidden;
+}
 
+ 
+.item-slick3 {
+  flex: 0 0 auto;
+  margin-right: 15px;  
+}
+
+ .wrap-pic-w {
+  position: relative;
+}
+
+ .img-container {
+  position: relative;
+  overflow: hidden;
+}
+
+ .img-zoom {
+  max-width: 100%;
+  height: auto;
   display: block;
-} 
-#lens {
-  height: 125px;
-  width: 125px;
-  border: solid black 2px;
-  z-index: 2;
+}
+
+ .lens {
   position: absolute;
+  border: 1px solid #ccc; 
+  width: 100px; 
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;  
   display: none;
 }
 
-#img-container{
+ .slick3 .item-slick3:last-child {
+  margin-right: 0;  
+}
+
+.slick3 .item-slick3:hover .lens {
+  border-color: #333;  
+  display: block;
+}
+
+
+.button-buy-cart{
+  color: white;
+  background: blue;
+  border: solid 1px;
+  border-radius: 7px;
+  width: 133px;
+}
+
+.responsive-image {
+  width: 19vw;
+  height: 224px;
+   
+}
+
+@media(max-width:564px){
+  .responsive-image {
+    width: 41vw;
+    height: 204px;
+     
+  }
+
+}
+
+.messages li.error {
+  color: white;
+  background-color: #f44336; /* Red background color */
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+/* Styles for info messages */
+.messages li.info {
+  color: white;
+  background-color: #4CAF50; /* Green background color */
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+.message-box {
+  margin: auto;
+  padding: 15px;
   z-index: 1;
-  position: relative;
-  cursor: none;
-  background-repeat: no-repeat;
+  max-width: 300px;
+  transition: max-width 0.3s ease-in-out;
+position: relative;
+}
+
+.close-arrow {
+position: absolute;
+  cursor: pointer;
+   top: 6px;
+  right: 17px;
+  font-size: 20px;
+}
+
+.messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.error {
+  /* Customize styles for error messages */
+  color: white;
 }

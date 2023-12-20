@@ -7,4 +7,4 @@ admin.site.register(Products)
 admin.site.register(product_image)
 admin.site.register(Cart)
 
-admin.site.register(Order)
+ 

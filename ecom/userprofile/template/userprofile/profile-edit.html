@@ -1,0 +1,68 @@
+{% extends 'userprofile/profile.html' %}
+{% block titleprofile %}
+Edit profile
+{% endblock %}
+{% block details %}
+<div style="background: aliceblue;" class="col-7 col-md-4 col-lg-3">
+<form method="post" action="{% url 'userprofile:profile-edit' id=user.id %}" >
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="first_name" class="form-label">First Name</label>
+        <input type="text"  class="form-control" id="first_name" name="first_name" value="{{user.first_name}}"  >
+        {% if errors.f_name %}
+        <h1 class="signup-errors per-edit-error">{{ errors.f_name }}</h1>
+      {% endif %}
+        <br>
+    </div>
+    <div class="mb-3">
+        <label for="last_name" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="last_name" value="{{user.last_name}}" name="last_name"  >
+    </div>
+    <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <select name="gender" class="styled-input">
+            <option value="{{ user.Gender }}">{{ user.Gender }}</option>
+            {% if user.Gender == 'Male' %}
+             <option value="Female">Female</option>
+        {% elif user.Gender == 'Female' or user.Gender == 'Women' %}
+            <option value="Male">Male</option>
+         {% else %}
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        {% endif %}
+          </select>
+         
+    </div>
+    <div class="mb-3">
+        <label for="number"  class="form-label">Number</label>
+        <input type="tel" value="{{user.Number}}" class="form-control" id="number" name="number" pattern="[0-9]{10}"  >
+        {% if errors.number %}
+        <h1 class="signup-errors per-edit-error">{{ errors.number }}</h1>
+      {% endif %}
+      {% if errors.number_exist %}
+      <h1 class="signup-errors per-edit-error">{{ errors.number_exist }}</h1>
+    {% endif %}
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email"  value="{{user.email}}">
+        {% if errors.email_exist %}
+        <h1 class="signup-errors per-edit-error">{{ errors.email_exist }}</h1>
+      {% endif %}
+      {% if errors.email %}
+        <h1 class="signup-errors per-edit-error">{{ errors.email }}</h1>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <textarea class="form-control" id="address" name="address" rows="3"  >{{user.Address}}</textarea>
+        {% if errors.address %}
+        <h1 class="signup-errors per-edit-error">{{ errors.address }}</h1>
+      {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+
+{% endblock %}

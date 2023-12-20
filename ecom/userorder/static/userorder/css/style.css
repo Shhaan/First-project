@@ -1,0 +1,53 @@
+
+@media (max-width:610px){
+.form-control::placeholder{
+    font-size: 12px;
+}
+.form-control{
+    height: 30px;
+    font-size: 12px;
+
+}
+.div-product-detail-checkout{
+    height: 365px !important;
+}
+.image-checkout{
+    width: 50px !important;
+    margin: auto !important;
+    margin-top: 10px;
+}
+#detail-product-checkout-div{
+    flex-direction: column;
+}
+.productname{
+    font-size: 12px !important;
+    }
+    #productprice{
+        font-size: 9px !important; 
+        }
+}
+.div-product-detail-checkout{
+    background-color: #EEEEEE;
+    height: 410px;
+}
+
+.productname{
+font-size: 14px;
+}
+#productprice{
+    font-size: 10px;
+    }
+.stage-checkout{
+    text-align: center;
+    font-size: 17px;
+    width: 25px;
+    height: 25px;
+    border: 1px solid;
+    border-radius: 13px;
+    font-weight: 700;
+}
+@media (max-width:768px){
+    #hr-123{
+        top: 206px !important;
+    }
+}

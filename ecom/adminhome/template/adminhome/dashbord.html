@@ -23,6 +23,9 @@
   <link href="{% static 'adminhome/assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
   <link href="{% static 'adminhome/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
   <link href="{% static 'adminhome/assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+
+  {% block link %}
+  {% endblock %}
   
 
   <!-- Template Main CSS File -->
@@ -85,7 +88,12 @@
   <hr class="container-fluid">
     <ul class="sidebar-nav" id="sidebar-nav">
 
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="{% url 'adminhome:admin_panel' %}">
+          <i class="bi bi-clipboard-data text-black"></i><span>Dashbord</span>
+        </a>
       
+      </li>
       <li class="nav-item">
         <a class="nav-link collapsed"  href="{% url 'adminhome:customer' %}">
           <i class="bi bi-person-fill text-black"></i><span>Customer</span>
@@ -94,7 +102,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed"  href="{% url 'adminhome:admin_login' %}">
+        <a class="nav-link collapsed"  href="{% url 'admincrud:products' %}">
           <i class="bi bi-basket-fill text-black"></i><span>Products</span>
         </a>
       
@@ -106,14 +114,15 @@
       
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed"  href="{% url 'adminhome:admin_login' %}">
+        <a class="nav-link collapsed"  href="{% url 'admincrud:brand' %}">
           <i class="bi bi-tag-fill text-black"></i><span>Brand</span>
         </a>
       
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed"  href="{% url 'adminhome:admin_login' %}">
-          <i class="bi bi-clipboard-data text-black"></i><span>Category</span>
+        <a class="nav-link collapsed"  href="{% url 'admincrud:category' %}">
+          <i class="bi bi-film text-dark"></i>
+<span>Category</span>
         </a>
       
       </li>

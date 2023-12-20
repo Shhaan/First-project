@@ -1,0 +1,39 @@
+{% extends 'adminhome/dashbord.html' %}
+
+{% block content %}
+
+<form method="post" action="{% url 'admincrud:edit-brand' brand_id=brand.id  %}" enctype="multipart/form-data" class="styled-form">
+  {% csrf_token %}
+
+  
+
+  <label for="brand_name" class="styled-label">Brand Name:</label>
+  <input type="text" value="{{brand.brand_name}}" name="brand_name" class="styled-input">
+  {% if errors.name %}
+<h1 class="signup-errors">{{ errors.name }}</h1>
+{% endif %}
+{% if errors.exist_brand %}
+<h1 class="signup-errors">{{ errors.exist_brand }}</h1>
+{% endif %}
+<br>
+<label for="brand_image">Brand image:</label> <br>
+<div class="text-center">
+<img src="{{ brand.brand_image.url }}" style="width: 80px;margin-bottom: 10px;" alt="Current Brand Image"></div> <br>
+
+<label for="new_image">New image:</label> <br>
+<input type="file" name="brand_image" class="file-image" accept="image/*">
+
+<br>
+<br>
+
+
+  <button type="submit" style="display: block;margin: auto;" class="styled-button">Submit</button>
+
+</form>
+
+{% endblock %}
+
+{% block link %}
+{% load static %}
+<link href="{% static 'admincrud/css/style.css' %}" rel="stylesheet">
+  {% endblock %}

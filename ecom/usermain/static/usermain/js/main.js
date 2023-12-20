@@ -214,16 +214,19 @@
 
     /*==================================================================
     [ +/- num product ]*/
-    $('.btn-num-product-down').on('click', function(){
-        var numProduct = Number($(this).next().val());
-        if(numProduct > 0) $(this).next().val(numProduct - 1);
+    $('.btn-num-product-down').on('click', function() {
+        var numProduct = parseInt($(this).next().val(), 10);
+        if (numProduct > 1) {
+            $(this).next().val(numProduct - 1);
+            document.getElementById('i').value = numProduct - 1;
+        }
     });
 
-    $('.btn-num-product-up').on('click', function(){
-        var numProduct = Number($(this).prev().val());
+    $('.btn-num-product-up').on('click', function() {
+        var numProduct = parseInt($(this).prev().val(), 10);
         $(this).prev().val(numProduct + 1);
+        document.getElementById('i').value = numProduct + 1;
     });
-
     /*==================================================================
     [ Rating ]*/
     $('.wrap-rating').each(function(){
@@ -358,59 +361,87 @@ if (direction === 'prev') {
 
 // product image zoom in
 
-function Imgzoom(imgid){
-    let img = document.getElementById(imgid)
-    let lens = document.getElementById('lens')
-    lens.style.backgroundImage = `url(${img.src})`
+function setupImageZoom(imgElement) {
+    let imgContainer = imgElement.parentElement;
+    let lens = imgContainer.querySelector('.lens');
+    let ratio = 3;
 
-     let ratio = 3
+    lens.style.backgroundImage = `url(${imgElement.src})`;
+    lens.style.backgroundSize = (imgElement.width * ratio) + 'px ' + (imgElement.height * ratio) + 'px';
 
-     lens.style.backgroundSize = (img.width * ratio) + 'px ' + (img.height * ratio) + 'px';
-     img.addEventListener('mousemove',movelens)
-     lens.addEventListener('mousemove',movelens)
-     img.addEventListener('touchmove',movelens)
+    imgElement.addEventListener('mousemove', moveLens);
+    imgElement.addEventListener('touchmove', moveLens);
 
-     
+    function moveLens(event) {
+        let pos = getCursorPos(event);
+        let positionLeft = pos.x - (lens.offsetWidth / 2);
+        let positionTop = pos.y - (lens.offsetHeight / 2);
 
-     function movelens(){
-     let pos = getcursor()
-     console.log('pos',pos)
-   
-     let positionleft = pos.x - (lens.offsetWidth / 2)
-     let positiontop = pos.y - (lens.offsetHeight / 2)
+        if (positionLeft < 0) {
+            positionLeft = 0;
+        }
 
-     lens.style.left = positionleft + 'px';
-     lens.style.top = positiontop + 'px';
+        if (positionTop < 0) {
+            positionTop = 0;
+        }
 
-     if(positionleft < 0){
-        positionleft = 0
-     }
+        if (positionLeft > imgElement.width - lens.offsetWidth) {
+            positionLeft = imgElement.width - lens.offsetWidth;
+        }
 
-     if(positiontop < 0){
-        positiontop = 0
-     }
+        if (positionTop > imgElement.height - lens.offsetHeight) {
+            positionTop = imgElement.height - lens.offsetHeight;
+        }
 
-     if(positionleft > img.width  - lens.offsetWidth / 3){
-        positionleft = img.width  - lens.offsetWidth / 3
-     }
-     if(positiontop > img.height  - lens.offsetHeight / 3){
-        positiontop = img.height  - lens.offsetHeight / 3
-     }
-      
-     lens.style.backgroundPosition = '-' + (pos.x * ratio) + 'px ' + '-' + (pos.y * ratio) + 'px';
+        lens.style.left = positionLeft + 'px';
+        lens.style.top = positionTop + 'px';
+        lens.style.backgroundPosition = '-' + (pos.x * ratio) + 'px ' + '-' + (pos.y * ratio) + 'px';
     }
 
-     function getcursor() {
-        let e =  window.event;
-        let bounds = img.getBoundingClientRect();
-        let x = e.pageX - bounds.left;
-        let y = e.pageY - bounds.top;
-        
-        x = x -window.pageXOffset;
-        y = y -window.pageYOffset;
+    function getCursorPos(event) {
+        let bounds = imgElement.getBoundingClientRect();
+        let x = event.pageX - bounds.left - window.pageXOffset;
+        let y = event.pageY - bounds.top - window.pageYOffset;
 
         return { 'x': x, 'y': y };
     }
 }
 
-Imgzoom('img-zoom')
+document.querySelectorAll('.img-zoom').forEach(imgElement => {
+    setupImageZoom(imgElement);
+});
+
+
+
+// subtotal
+function updateSubtotal(input) {
+     var cartItemId = input.getAttribute('data-cart-item-id');
+
+     var quantity = parseInt(input.value);
+
+     var priceString = document.querySelector('.cart-item[data-cart-item-id="' + cartItemId + '"] .product-price').innerHTML;
+    var price = parseFloat(priceString);
+
+     var subtotal = quantity * price;
+
+     document.getElementById('subtotal_' + cartItemId).innerHTML = subtotal.toFixed(2);
+}
+
+//  this is hidden input in product detail
+document.getElementById('i').value = document.getElementById('in').value;
+
+document.getElementById('in').addEventListener('input', function() {
+    document.getElementById('i').value = this.value;
+});
+
+function up() {
+    var currentValue = parseInt(document.getElementById('i').value, 10);
+    document.getElementById('i').value = currentValue + 1;
+}
+
+function down() {
+    var currentValue = parseInt(document.getElementById('i').value, 10);
+    if (currentValue > 1) {
+        document.getElementById('i').value = currentValue - 1;
+    }
+}

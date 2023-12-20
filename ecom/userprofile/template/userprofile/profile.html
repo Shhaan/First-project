@@ -1,0 +1,73 @@
+{% extends 'usermain/Home.html' %}
+{% block topbutton %}
+{% endblock %}
+{% block nav1  %}
+
+<h1 class="text-center"><span style="color: black;"   id="Pu-span">Pure</span><span style="color: black;"   id="Pi-span">picks</span> </h1>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div id="personal-info-div" class="text-center  ">
+  
+  <h1 id="per-head">{% block titleprofile %}Personal information{% endblock %}</h1>
+  
+
+  <div class="my-3 " id="per-div-flex">
+    <div class="col-3 mt-3 col-md-2 p-0 col-xl-2">
+        <div   class="per-name  mb-4    col-12 p-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="29"   class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+              </svg>
+ <h4 class="m-0 labels" id="per-user-name">{{user.first_name}}</h4>
+    </div>
+
+    <div id="per-sidebar" class="col-12 p-0" >
+
+        <div class="per-name" style="background-color: transparent;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+              </svg><a href="{% url 'userprofile:profile-edit' id=user.id %}" style="color: black;"><span class="per-side-lab">Profile Edit</span></a>
+            
+        </div>
+
+        <div class="per-name" style="background-color: transparent;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+            <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+          </svg><a href="{% url 'userprofile:profile' %}" style="color: black;"><span class="per-side-lab">Order details</span></a>
+
+        </div>
+        <div><a href="{% url 'userprofile:logout' %}" style="color: rgb(235, 67, 67);">
+        <span class="per-side-lab">Log out</span></a>
+            
+        </div>
+    </div>
+    </div>
+
+    {% block details %}
+  <div id="per-detail-div" class="col-7 col-md-4 col-lg-3">
+  
+    <div class="per-sidebar-labels">First name : {{user.first_name}}</div>
+    <div  class="per-sidebar-labels">Last name : {{user.last_name}} </div>
+    <div  class="per-sidebar-labels">Email:{{user.email}} </div>
+    <div  class="per-sidebar-labels">Number:{{user.Number}} </div>
+    <div  class="per-sidebar-labels">Address :{{user.Address}}</div>
+    <div  class="per-sidebar-labels">Gender :{{user.Gender}}</div>
+    
+
+</div>{% endblock%}
+
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block link  %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'userprofile/css/style.css' %}">
+{% endblock %} 

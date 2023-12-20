@@ -1,0 +1,124 @@
+{% extends 'adminhome/dashbord.html' %}
+
+{% block content %}
+<h1 class="text-center mb-5" id="heading-product">Edit Product</h1>
+{% for i in product %}
+<form method="post" action="{% url 'admincrud:edit-product' product_id=i.id %}" enctype="multipart/form-data" class="styled-form">
+  {% csrf_token %}
+{% endfor %}
+  
+{% for i in product %}
+<input type="hidden" name="product_id" value="{{i.id}}">
+  <label for="product_name" class="styled-label">Product Name:</label>
+  <input type="text" name="product_name"{% if not errors.product_name and not errors.exist_product %} value="{{i.product_name}}" {% endif %} class="styled-input">
+  {% if errors.product_name %}
+  <h1 class="signup-errors">{{ errors.product_name }}</h1>
+{% endif %}
+{% if errors.exist_product %}
+<h1 class="signup-errors">{{ errors.exist_product }}</h1>
+{% endif %}
+<br>
+
+  <label for="price" class="styled-label">Product price:</label>
+  <input type="number" name="price" {% if not errors.price %} value="{{i.product_price}}" {% endif %} step="0.01"  class="styled-input">
+  {% if errors.price %}
+  <h1 class="signup-errors">{{ errors.price }}</h1>
+{% endif %}
+  <br>
+
+  <label for="gender" class="styled-label">User Gender:</label>
+  <select name="gender" class="styled-input">
+    <option value="{{ i.user_gender }}">{{ i.user_gender }}</option>
+    {% if i.user_gender == "MEN" %}
+        <option value="WOMEN">WOMEN</option>
+    {% else %}
+        <option value="MEN">MEN</option>
+    {% endif %}
+  </select>
+ 
+  <br>
+
+
+  <label for="brand" class="styled-label">Brand:</label>
+  <select name="brand" class="styled-input">
+     <option value="{{ i.brand.brand_name }}">{{ i.brand.brand_name }}</option>
+
+    
+     {% for j in brand %}
+     {% if j.brand_name != i.brand.brand_name %}
+         <option value="{{ j.brand_name }}">{{ j.brand_name }}</option>
+     {% endif %}
+ {% endfor %}
+  </select>
+   
+  <br>
+
+
+  <label for="category" class="styled-label">Category:</label>
+  <select name="category" class="styled-input">
+    
+    <option value="{{ i.category }}">{{ i.category }}</option>
+    
+    {% for c in category %}
+    {% if c.Category_name != i.Category_name %}
+        <option value="{{ c.Category_name }}">{{ c.Category_name }}</option>
+    {% endif %}
+{% endfor %}
+  </select>
+ 
+  <br>
+
+  <label for="status" class="styled-label">Status:</label>
+  <select name="status" class="styled-input">
+    {% if  i.status == "true" %}
+    <option value="sale">sale</option>
+    {% else %}
+    <option value="{{ i.status }}">{{ i.status }}</option>
+    {% endif %}
+    {% if i.status == "out of stock" %}
+        <option value="sale">sale</option>
+    {% else %}
+        <option value="out of stock">out of stock</option>
+    {% endif %}
+  </select>
+  <br>
+
+  <label for="quantity" class="styled-label">Quantity:</label>
+  <input type="number" {% if not errors.quantity %} value="{{i.quantity}}" {% endif %}name="quantity"  class="styled-input">
+  {% if errors.quantity %}
+  <h1 class="signup-errors">{{ errors.quantity }}</h1>
+{% endif %}
+  <br>
+
+  
+
+ 
+
+  <label for="Tag" class="styled-label">Tag:</label>
+  <input type="text" name="tag" value="{{i.tag}}" step="0.01"  class="styled-input">
+  <br>
+
+  
+
+
+  <label for="description" class="styled-label">Description:</label>
+  <textarea name="description"  rows="4" cols="50"  class="styled-input">{% if not errors.description %}{{ i.product_des }}{% endif %}</textarea>
+
+  {% if errors.description %}
+  <h1 class="signup-errors">{{ errors.description }}</h1>
+{% endif %}
+
+  <br>
+  {% endfor %}
+  <button type="submit" style="display: block;margin: auto;" class="styled-button">Submit</button>
+
+</form>
+
+
+
+{% endblock %}
+
+{% block link %}
+{% load static %}
+<link href="{% static 'admincrud/css/style.css' %}" rel="stylesheet">
+  {% endblock %}
