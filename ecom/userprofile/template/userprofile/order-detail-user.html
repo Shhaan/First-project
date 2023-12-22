@@ -1,0 +1,16 @@
+{% extends 'userprofile/profile.html' %}
+{% block titleprofile %}
+Track order
+{% endblock %}
+{% block details %}
+<div id="per-detail-div" style="overflow: auto;justify-content: left;" class="col-2-div-order-detail col-7 col-md-4 col-lg-3">
+    <h1 style="font-size: 1rem;margin-bottom: 15px; margin-top: 5px;">Shipping bag</h1>
+ 
+    {% for order_item in order.order_items.all %}
+    <img src="{{order_item.product.product_image_set.first.image.url}}" alt="">
+   <div class="per-sidebar-labels" style="font-size: 0.6rem;">{{ order_item.product.product_name }}</div> <br>
+   {% endfor %}
+
+   <a href="{% url 'userprofile:delete-order' id=order.id %}">delete</a>
+</div> 
+{% endblock %}

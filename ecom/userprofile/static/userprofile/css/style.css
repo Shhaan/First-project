@@ -5,7 +5,7 @@
 
 #per-head{
     font-family: 'Roboto';
-    font-size: 3vw;
+    font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 32px;
 }
@@ -21,6 +21,14 @@
 }
 #per-detail-div{
   background-color: #E9E9E6;
+    height: 400px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+#per-detail-div1{
+    background-color: #E9E9E6;
     height: 400px;
     border-radius: 12px;
     display: flex;
@@ -49,10 +57,14 @@
    
 
     #per-sidebar{
-        height: 179px;}
+        height: 205px;}
         #per-detail-div{
              
               height: 300px;}
+
+              #per-detail-div1{
+                height: 300px;
+              }
               #per-user-name{
                 font-size: 10px;
               }
@@ -73,6 +85,11 @@
     .per-side-lab{
         font-size: 10px;
     }
+    .col-2-div-order-detail{
+        margin-top: 20px;
+    }
+
+    
 }
 .per-edit-error{
     display: inline-block;
@@ -83,3 +100,11 @@
 
     font-size: 13px !important;
 }
+#id-a-check{
+    background-color: black;
+    color: white;
+    font-size: 0.7rem;
+    display: inline-block;
+    width: 107px;
+    height: 17px;
+    border-radius: 12px;}

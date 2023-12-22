@@ -1,0 +1,78 @@
+{% extends 'adminhome/dashbord.html' %}
+
+
+{% block content %}
+<h1 class="text-center mb-5" id="heading-product">Orders</h1>
+<div style="display: flex;justify-content: end;">
+
+<form class="form-inline" action="{% url 'admincrud:orders' %}" method="get">
+ 
+    <div class="input-group" style="justify-content: end;    align-items: center;">
+     
+        <input id="search" placeholder="search"  type="search" name="search"  >
+        <div class="input-group-append">
+          <button type="submit" id="search-button"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="23" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+          </svg></button>
+      </div>
+    </div>
+   </form>
+</div>
+<div class="table-responsive mt-5">
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">Order Id</th>
+                <th scope="col">Product name</th>
+                <th scope="col">name</th>
+                <th scope="col">Order date</th>
+                <th scope="col">Sub total</th>
+                <th scope="col">Status</th>
+                <th colspan="2">Oprations</th>
+            </tr>
+        </thead>
+        <tbody>
+          
+            {% for i in orderitem %}
+                <tr class="text-center" style="vertical-align: middle;">
+                    <td class="t-body-cutomer">{{ i.id }}</td>
+                   
+                    <td class="t-body-cutomer"><a href="{% url 'admincrud:order-detail'  id=i.id %}"> {{ i.product.product_name }} </a></td>
+                    <td class="t-body-cutomer">{{ i.order.user.first_name }}</td>
+                    <td class="t-body-cutomer">{{ i.order.created_at }}</td>
+  
+                
+
+                    <td class="t-body-cutomer sub" >{{i.sub_total}}</td>
+
+                    <td class="t-body-cutomer">{{ i.order.status }}</td>
+
+                    <td class="t-body-cutomer">
+                        {% if i.order.status == 'pending' %}
+                                {% if i.order.is_deleted == False %}
+                                <a href="{% url 'admincrud:cancel-order'  id=i.order.id %}" style="color: rgb(204, 81, 81);">Cancel</a>
+                                {% elif i.order.is_deleted == True %}
+                                <a href="{% url 'admincrud:uncancel-order'  id=i.order.id %}" style="color: rgb(76, 179, 76);">uncancel</a>
+                                {% endif %}
+                        {% else %}
+                        Delivered
+                        {% endif %}
+                    </td>
+         
+                 
+                    <!-- {% if i.is_deleted == False %}
+                        <td class="t-body-cutomer"><a id="Block-user" href="{% url 'admincrud:unlist-product' product_id=i.id %}">Unlist</a></td>
+                    {% else %}
+                        <td class="t-body-cutomer"><a id="unblock-user" href="{% url 'admincrud:list-product' product_id=i.id %}">List</a></td>
+                    {% endif %} -->
+                </tr>
+            {% endfor %}
+        
+        </tbody>
+    </table>
+  </div>
+{% endblock %}
+{% block link %}
+{% load static %}
+<link href="{% static 'admincrud/css/style.css' %}" rel="stylesheet">
+  {% endblock %}

@@ -63,19 +63,20 @@ def checkout(request,slug):
 
 
         if not error:
+
            order = Order.objects.create(user = user,first_name =f_name,last_name=l_name,address=Address,postal_code=postalcode,state=state,phone=phone,country=country)
-           
            user_cart = Cart.objects.filter(user=request.user ,product = product)
     
            total = 0  
-                
+           qua  = 0
            for cart_item in user_cart:
                 total += cart_item.quantity * cart_item.product.product_price 
                  
                 qua = cart_item.quantity
            
-           if input_val == None :
-                
+           if input_val == None:
+                if qua == 0:
+                    return redirect(reverse('userorder:shipping',kwargs={'slug': slug}))
                 Orderitem.objects.create(order = order,product = product,quantity = qua,sub_total = total)
                 Cart.objects.filter(user=request.user,product=product).delete()
                 input_val = None
@@ -93,6 +94,8 @@ def checkout(request,slug):
 @cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
 def  shipping(request,slug):
     product = Products.objects.get(slug = slug)
+    
+    
     context = {'product':product}       
     return render(request,'userorder/shipping.html',context)
     

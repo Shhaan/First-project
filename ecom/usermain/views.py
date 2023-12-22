@@ -215,7 +215,7 @@ def products(request):
         
         for cart_item in user_cart:
             total += cart_item.quantity * cart_item.product.product_price 
-            
+        
         context = {'category': category,'brands':brands,'products':products,'user_cart': user_cart,'total':total}
     return render(request,'usermain/products.html',context)
 @never_cache

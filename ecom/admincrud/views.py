@@ -5,7 +5,8 @@ from adminhome.models import *
 from usermain.models import Users
 from django.db.models import *
 from django.views.decorators.cache import never_cache
-
+from userorder.models import *
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 
@@ -335,3 +336,41 @@ def add_category(request):
             return redirect(reverse('admincrud:category'))
     context = {'errors':errors}
     return render(request,'admincrud/categoryadd.html',context)
+
+
+# order details
+def orders(request):
+    if   request.user.is_superuser == False:
+        return redirect('adminhome:admin_login')  
+    
+    search = request.GET.get('search','')
+    if search:
+        orderitem = Orderitem.objects.filter(Q(id = search)|Q(order__first_name__icontains = search)|Q(order__user__email__icontains = search)|Q(product__product_name__startswith= search))
+    else:
+        
+        orderitem = Orderitem.objects.all().order_by('-id')
+    
+    return render(request,'admincrud/order.html',{'orderitem':orderitem})
+
+def cancel_order(request,id):
+    if   request.user.is_superuser == False:
+        return redirect('adminhome:admin_login')  
+    order = Order.objects.filter(id=id).update(is_deleted =True )
+    
+    
+    return redirect(reverse('admincrud:orders'))
+def uncancel_order(request,id):
+    if   request.user.is_superuser == False:
+        return redirect('adminhome:admin_login')  
+  
+    Order.objects.filter(id=id).update(is_deleted =False )
+
+    
+    return redirect(reverse('admincrud:orders'))
+    
+def order_detail(request,id):
+    if   request.user.is_superuser == False:
+        return redirect('adminhome:admin_login')  
+    
+    orderitem = Orderitem.objects.get(id=id)
+    return render(request,'admincrud/order-detail.html',{'orderitem':orderitem})

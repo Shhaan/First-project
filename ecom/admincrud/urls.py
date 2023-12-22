@@ -28,9 +28,15 @@ urlpatterns = [
     path('category/edit-category/<int:category_id>',views.edit_category,name='edit-category'),
     path('category/addcategory/',views.add_category,name='addcategory'),
     
+    #order
+    
+    path('orders/',views.orders,name='orders'),
+    path('orders/cancel-order/<int:id>',views.cancel_order,name='cancel-order'),
+    path('orders/uncancel-order/<int:id>',views.uncancel_order,name='uncancel-order'),
+    path('orders/order-detail/<int:id>',views.order_detail,name='order-detail'),
+   
     
     
-   
-   
+    
     
 ]

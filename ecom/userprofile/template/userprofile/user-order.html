@@ -1,0 +1,65 @@
+{% extends 'userprofile/profile.html' %}
+{% block titleprofile %}
+Order Details
+{% endblock %}
+{% block details %}
+<div style="overflow-x: auto;justify-content: left;" id="per-detail-div1" class="col-7 col-md-4 col-lg-3">
+  <h1 style="font-size: 1rem;margin-bottom: 15px; margin-top: 5px;">Order History</h1>
+    {% for i in order_item %}
+    {% if i.order.status == 'completed' %}
+  
+    <div style="display: flex;align-items: center;" class="mt-2">
+        <div >
+            <img style="width: 70px;" src="{{i.product.product_image_set.first.image.url}}" alt="">
+        </div>
+    <div class="per-sidebar-labels" style="font-size: 0.6rem;"> {{i.product.product_name}}</div> <br>
+    
+     
+</div>
+<div class="per-sidebar-labels" style="font-size: 0.5rem;">Sub total: {{i.sub_total}}</div>
+<hr>
+  <style>
+        #per-detail-div1{
+         display: block;
+        }   
+     </style>
+{% else%}
+
+<style>
+   #per-detail-div1{
+    display: none;
+   }   
+</style>
+    {% endif %}
+    
+ {% endfor %}
+    
+
+</div>
+<div id="per-detail-div" style="overflow: auto;justify-content: left;" class="col-2-div-order-detail col-7 col-md-4 col-lg-3">
+    <h1 style="font-size: 1rem;margin-bottom: 15px; margin-top: 5px;">Shipping bag</h1>
+    {% for i in order_item %}
+    {% if i.order.status == 'pending' %}
+    {% if i.order.is_deleted %}
+    <div class="per-sidebar-labels" style="font-size: 0.6rem;">Your order has ben deleted for {{i.product.product_name}}</div> <br>
+    {% else %}
+    <div style="display: flex;align-items: center;" class="mt-2">
+        <div >
+            <img style="width: 70px;" src="{{i.product.product_image_set.first.image.url}}" alt="">
+        </div>
+    <div class="per-sidebar-labels" style="font-size: 0.6rem;"> {{i.product.product_name}}</div> <br>
+    
+     
+</div>
+<div class="per-sidebar-labels" style="font-size: 0.5rem;margin-bottom:7px;">Sub total: {{i.sub_total}}</div>
+<div class="per-sidebar-labels  m-auto" ><a href="{% url 'userprofile:check-detail' id=i.order.id %}" id="id-a-check">Check details</a></div>
+{% endif %}
+
+<hr>
+    {% endif %}
+    
+ {% endfor %}
+</div>
+{% endblock %}
+
+

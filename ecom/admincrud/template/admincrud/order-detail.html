@@ -1,0 +1,130 @@
+{% extends 'adminhome/dashbord.html' %}
+
+{% block content %}
+
+<div style="display: flex;">
+<div class="card m-auto">
+    <div class="card-header">
+        Order for : {{orderitem.order.first_name}}
+    </div>
+    <div class="card-body">
+        <div class="detail">
+            <label>First Name:</label>
+            <span>{{orderitem.order.first_name}}</span>
+        </div>
+       
+        <div class="detail">
+            <label>Last name:</label>
+            <span>{{orderitem.order.last_name}}</span>
+        </div>
+        <div class="detail">
+            <label>Email:</label>
+            <span>{{orderitem.order.user.email}}</span>
+        </div>
+        <div class="detail">
+            <label>Phone:</label>
+            <span>{{orderitem.order.phone}}</span>
+        </div>
+        <div class="detail">
+            <label>Country:</label>
+            <span>{{orderitem.order.country}}</span>
+        </div>
+        <div class="detail ">
+            <label>State:</label>
+            <span>{{orderitem.order.state}}</span>
+        </div>
+        <div class="detail">
+            <label>Postal code:</label>
+            <span>{{orderitem.order.postal_code}}</span>
+        </div>
+        <div class="detail">
+            <label>Order date:</label>
+            <span>{{orderitem.order.created_at}}</span>
+        </div>
+        <div class="detail">
+            <label>Status:</label>
+            <span>{{orderitem.order.status}}</span>
+        </div>
+        <div class="detail">
+            <label>Address:</label>
+            <span>{{orderitem.order.address}}</span>
+        </div>
+        <div class="detail">
+            
+            {%  if orderitem.order.paid == True %}
+            <label>paid_amount:</label>
+            <span>{{orderitem.order.paid_amount}}</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="card m-auto">
+    <div class="card-header">
+        Orderd Product
+    </div>
+    <div class="card-body">
+        <div class="detail">
+            <label>Product Name:</label>
+            <span style="font-size: 2.6vh;">{{orderitem.product.product_name}}</span>
+        </div>
+       
+        <div class="detail">
+            <label>Quantity:</label>
+            <span>{{orderitem.quantity}}</span>
+        </div>
+        <div class="detail">
+            <label>Sub total:</label>
+            <span>{{orderitem.sub_total}}</span>
+        </div>
+        <div class="detail">
+            <label>Product brand:</label>
+            <span>{{orderitem.product.brand.brand_name}}</span>
+        </div>
+        <div class="detail">
+            <label>Product Category:</label>
+            <span>{{orderitem.product.category.Category_name}}</span>
+        </div>
+        
+    </div>
+</div>
+
+</div>
+
+
+<style>.card {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 16px;
+}
+
+.card-header {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px;
+    text-align: center;
+}
+
+.card-body {
+    padding: 16px;
+}
+
+.detail {
+    margin-bottom: 20px;
+}
+
+.detail label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.detail span {
+    display: block;
+    color: #555;
+}</style>
+
+{% endblock %}

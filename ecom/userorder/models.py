@@ -17,13 +17,14 @@ class Order(models.Model):
     country = models.CharField(max_length=100)
     created_at = models.DateField(auto_now_add=True)
     paid = models.BooleanField(default=False,null=True)
-    paid_amount = models.BigIntegerField(null=True)
+    paid_amount = models.BigIntegerField(null=True,blank = True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
-   
+    is_deleted = models.BooleanField(default=False)
+    
     def __str__(self):
         return 'order for ' + self.user.first_name + ' |   Email :  ' + self.user.email
 class Orderitem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE,related_name='order_items')
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
     sub_total    = models.IntegerField()
     quantity =models.IntegerField(default = 1)

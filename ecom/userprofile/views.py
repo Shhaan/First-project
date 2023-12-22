@@ -11,6 +11,7 @@ import random
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login ,authenticate,logout
 from django.views.decorators.cache import never_cache
+from userorder.models import *
 
 
 
@@ -74,3 +75,19 @@ def profile_edit(request,id):
     context = {'user_cart': user_cart,'total':total,'errors':errors }
         
     return render(request,'userprofile/profile-edit.html',context)
+def user_order(request):
+    if  request.user.is_authenticated == False:
+        return redirect('usermain:login')     
+    order_item = Orderitem.objects.filter(order__user = request.user)
+    return render(request,'userprofile/user-order.html',{'order_item':order_item})
+def check_detail(request,id):
+    if  request.user.is_authenticated == False:
+        return redirect('usermain:login') 
+
+    order = Order.objects.prefetch_related('order_items').get(id=id)
+    return render(request,'userprofile/order-detail-user.html',{'order':order})
+def delete_order(request,id):
+    if  request.user.is_authenticated == False:
+        return redirect('usermain:login') 
+    Order.objects.filter(id=id).delete()
+    return redirect('userprofile:user-order')
