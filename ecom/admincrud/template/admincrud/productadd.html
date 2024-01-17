@@ -57,6 +57,15 @@
   <h1 class="signup-errors">{{ errors.brand }}</h1>
 {% endif %}
   <br>
+
+  <label for="tax" class="styled-label">Tax:</label>
+  <select name="tax" class="styled-input">
+    <option value="None">-------</option>
+     {% for j in tax %}
+         <option value="{{ j.name }}">{{ j.name }} {{ j.rate }}%</option>
+ {% endfor %}
+  </select>
+
   <label for="category" class="styled-label">Category:</label>
   <select name="category" class="styled-input">
     <option value="None">-------</option>

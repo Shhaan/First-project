@@ -1,6 +1,6 @@
 {% extends 'usermain/Home.html' %}
 {% load static %}
-{% block content %}<!-- Product Detail -->
+{% block content %} 
 <section class="sec-product-detail  p-t-65 p-b-60 mt-5" style="background-color: #E9E9E6;margin-top: 150px !important;">
 	<div class="container mt-4">
 		<div class="row">
@@ -45,19 +45,7 @@
 						Rs.  {{product.product_price}}
 					</span>
 
-					<!-- <p class="stext-102 cl3 p-t-23">
-						Free delivery
-                    </p>
-
-					<p class="stext-102 cl3 p-t-23">
-						Safty Guarenty
-                    </p>
-					<p class="stext-102 cl3 p-t-23">
-						24H support
-                    </p> -->
-					
-					
-
+			
 						
 
 						<div class="flex-w flex-r-m p-b-10">
@@ -83,15 +71,18 @@
 									</div>
 
 									<input type="hidden" name="product_name" value="{{product.product_name}}" id="product_id">
-
+									{% for i in message %}
+									{% if i == 'warning' %}
+									<h3 class="size-101">{{i}}</h3>
+									{% endif %}{% endfor %}
+														
 									<button  type="submit" class="flex-c-m stext-101 cl0 size-101  bor1 p-lr-15 mt-5 trans-04 " style="background-color: rgb(172, 172, 32);">
 										
 										Add to cart
 					
 										
 									</button>
-
-								</form>
+			</form>
                                      
                                       
 								<form action="{% url 'userorder:chekout-pr-detail'  slug=product.slug  %}" method="post">
@@ -103,7 +94,12 @@
 										Buy Product
 										
 											
-									</button></form>	
+									</button>
+									{% for message in messages %}
+									{% if message.tags == 'warning' %}
+									<li>{{ message }}</li>{% endif %}
+								{% endfor %}
+							</form>	
 						</div>
 						
 					</div>
@@ -115,17 +111,23 @@
 		
 		<div class="bor10 m-t-50 p-t-43 p-b-40">
 			{% if messages %}
-		<div id="message-box" class="message-box">
-			
+			<div id="message-box" class="message-box">
 				<ul class="messages">
 					{% for message in messages %}
-						<li class="{{ message.tags }}">{{ message }}</li>
+						{% if message.tags == 'error' or message.tags == 'info' %}
+							<li class="{{ message.tags }}">{{ message }}</li>
+						{% endif %}
 					{% endfor %}
 				</ul>
-			
-
-			<div id="close-arrow" class="close-arrow text-black" onclick="closeMessageBox()">&#9650;</div>
-		</div>{% endif %}
+				{% for message in messages %}
+					{% if message.tags == 'error' or message.tags == 'info' %}
+						<div id="close-arrow" class="close-arrow text-black" onclick="closeMessageBox()">&#9650;</div>
+						 
+					{% endif %}
+				{% endfor %}
+			</div>
+		{% endif %}
+		
 			<!-- Tab01 -->
 			<div class="tab01">
 				<!-- Nav tabs -->
@@ -143,9 +145,9 @@
 					</li> 
 				</ul>
 
-				<!-- Tab panes -->
+			 
 				<div class="tab-content p-t-43">
-					<!-- - -->
+					 
 					<div class="tab-pane fade show active" id="description" role="tabpanel">
 						<div class="how-pos2 p-lr-15-md">
 							<p class="stext-102 cl6">
@@ -153,8 +155,7 @@
 							</p>
 						</div>
 					</div>
-					
-					<!-- - -->
+					 
 					<div class="tab-pane fade" id="information" role="tabpanel">
 						<div class="row">
 							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
@@ -210,13 +211,11 @@
 						<div class="row">
 							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 								<div class="p-b-30 m-lr-15-sm">
-									<!-- Review -->
+									 
 									{% if review %}
 									{% for i in review %}
 									<div class="flex-w flex-t p-b-68">
-										<!-- <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-											<img src="images/avatar-01.jpg" alt="AVATAR">
-										</div> -->
+										 
 
 										<div class="size-207">
 											<div class="flex-w flex-sb-m p-b-17">
@@ -242,7 +241,7 @@
 	
 								
 
-									<!-- Add review -->
+									 
 									<form class="w-full" method="post" action="{% url 'usermain:addreview' product_slug=product.slug %}">
 										{% csrf_token %}
 										<h5 class="mtext-108 cl2 p-b-7">
@@ -291,8 +290,7 @@
 
 </section>
 
-
-<!-- Related Products -->
+ 
 <section class="sec-relate-product bg0 p-t-45 p-b-105">
 	<div class="container">
 		<div class="p-b-45">
@@ -332,9 +330,7 @@
 							</div>
 						</div>
 					</div> 
-					<a href="{% url 'userorder:checkout' slug=i.slug %}" class="buy-botton stext-103 cl2  bg-info text-white bor2  p-lr-15 trans-04 m-auto ">
-						Buy Product
-					</a>
+					 
 				</div> {% endfor %}
 
 				
@@ -344,8 +340,7 @@
 				
 
 				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-					<!-- Block2 -->
-					
+				 	
 				</div>
 
 				

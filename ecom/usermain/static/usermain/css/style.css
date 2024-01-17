@@ -3,7 +3,7 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Make sure the body takes at least the full height of the viewport */
+    min-height: 100vh; 
 }
 
 main {
@@ -40,6 +40,23 @@ color: #343434;}
         align-items: center;
         
 }
+@media (max-width:374px){
+     #pu-mob{
+font-size: 24px;
+     }
+     #pi-mob{
+        font-size: 14px;
+
+     }
+     .icon-header-item{
+        font-size: 17px;
+     }
+     #svg_user{
+        width: 16px;
+     }
+}
+
+
 @media (max-width: 768px) {
 #Pi-span{
     font-size: 30px;

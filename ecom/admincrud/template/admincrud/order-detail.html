@@ -10,12 +10,12 @@
     <div class="card-body">
         <div class="detail">
             <label>First Name:</label>
-            <span>{{orderitem.order.first_name}}</span>
+            <span>{{orderitem.order.shipping_address.first_name}}</span>
         </div>
        
         <div class="detail">
             <label>Last name:</label>
-            <span>{{orderitem.order.last_name}}</span>
+            <span>{{orderitem.order.shipping_address.second_name}}</span>
         </div>
         <div class="detail">
             <label>Email:</label>
@@ -23,19 +23,25 @@
         </div>
         <div class="detail">
             <label>Phone:</label>
-            <span>{{orderitem.order.phone}}</span>
+            <span>{{orderitem.order.shipping_address.phone}}</span>
         </div>
         <div class="detail">
             <label>Country:</label>
-            <span>{{orderitem.order.country}}</span>
+            <span>{{orderitem.order.shipping_address.country}}</span>
         </div>
+
+        <div class="detail">
+            <label>District:</label>
+            <span>{{orderitem.order.shipping_address.district}}</span>
+        </div>
+
         <div class="detail ">
             <label>State:</label>
-            <span>{{orderitem.order.state}}</span>
+            <span>{{orderitem.order.shipping_address.state}}</span>
         </div>
         <div class="detail">
             <label>Postal code:</label>
-            <span>{{orderitem.order.postal_code}}</span>
+            <span>{{orderitem.order.shipping_address.postal_code}}</span>
         </div>
         <div class="detail">
             <label>Order date:</label>
@@ -43,16 +49,69 @@
         </div>
         <div class="detail">
             <label>Status:</label>
-            <span>{{orderitem.order.status}}</span>
+            {% if orderitem.order.is_deleted == False %}
+            <a onclick="return ale()" id="a-status" href="{% url 'admincrud:change-status'  id=orderitem.order.id %}">{{ orderitem.order.status }}</a>
+            
+            <script>
+                function ale() {
+                    var userConfirmation = confirm('Are you sure to change order status');
+            
+                    if (!userConfirmation) {
+                        return false;
+                    }
+                    else{
+                        return true
+                    }
+
+                }
+</script>
+{% else %}  
+<div class="detail">
+     
+    <span>Order is been Cancelled</span>
+</div>
+{% endif %}
         </div>
         <div class="detail">
             <label>Address:</label>
-            <span>{{orderitem.order.address}}</span>
+            <span>{{orderitem.order.shipping_address.address}}</span>
         </div>
+{% if  orderitem.order.coupon %}
+        <div class="detail">
+            <label>coupon:</label>
+            <span>{{orderitem.order.coupon}} - {{orderitem.order.coupon.discount_percentage}}%</span>
+        </div>{% endif %}
+        <div class="detail">
+            <label>Payment method:</label>
+            <span>{{orderitem.order.payment_method}}</span>
+        </div>
+{% if c %}
+        <div class="detail">
+            <label>Category offer:</label>
+            <span>{{c}}</span>
+        </div>
+{% endif %}
+        <div class="detail">
+            <label>Shipping:</label>
+            <span>{{orderitem.shipping_option.shipping_name}} Rs.{{orderitem.shipping_option.shipping_price}}</span>
+        </div>
+        <div class="detail">
+            <label>Total of order item :</label>
+            <span>{{orderitem.total}}</span>
+        </div>
+
+
+
+        <div class="detail">
+            <label>Total of order  :</label>
+            <span>{{orderitem.order.total}}</span>
+        </div>
+
+
         <div class="detail">
             
             {%  if orderitem.order.paid == True %}
-            <label>paid_amount:</label>
+            <label>paid_amount of order :</label>
             <span>{{orderitem.order.paid_amount}}</span>
             {% endif %}
         </div>
@@ -85,6 +144,11 @@
             <label>Product Category:</label>
             <span>{{orderitem.product.category.Category_name}}</span>
         </div>
+        {% if orderitem.product.tax_rate %}
+        <div class="detail">
+            <label>Tax:</label>
+            <span>{{orderitem.product.tax_rate}} - {{orderitem.product.tax_rate.rate}}%</span>
+        </div>{% endif %}
         
     </div>
 </div>

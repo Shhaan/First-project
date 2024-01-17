@@ -1,14 +1,4 @@
-/**
-* Template Name: NiceAdmin
-* Updated: Sep 18 2023 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
 :root {
   scroll-behavior: smooth;
 }
@@ -52,10 +42,7 @@ h6 {
     padding: 20px;
   }
 }
-
-/*--------------------------------------------------------------
-# Page Title
---------------------------------------------------------------*/
+ 
 .pagetitle {
   margin-bottom: 10px;
 }
@@ -66,10 +53,7 @@ h6 {
   font-weight: 600;
   color: #012970;
 }
-
-/*--------------------------------------------------------------
-# Back to top button
---------------------------------------------------------------*/
+ 
 .back-to-top {
   position: fixed;
   visibility: hidden;
@@ -98,12 +82,7 @@ h6 {
 .back-to-top.active {
   visibility: visible;
   opacity: 1;
-}
-
-/*--------------------------------------------------------------
-# Override some default Bootstrap stylings
---------------------------------------------------------------*/
-/* Dropdown menus */
+}  
 .dropdown-menu {
   border-radius: 4px;
   padding: 10px 0;
@@ -180,7 +159,6 @@ h6 {
   }
 }
 
-/* Light Backgrounds */
 .bg-primary-light {
   background-color: #cfe2ff;
   border-color: #cfe2ff;
@@ -216,7 +194,6 @@ h6 {
   border-color: #d3d3d4;
 }
 
-/* Card */
 .card {
   margin-bottom: 30px;
   border: none;
@@ -254,14 +231,12 @@ h6 {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
-/* Alerts */
 .alert-heading {
   font-weight: 500;
   font-family: "Poppins", sans-serif;
   font-size: 20px;
 }
-
-/* Close Button */
+ 
 .btn-close {
   background-size: 25%;
 }
@@ -270,8 +245,7 @@ h6 {
   outline: 0;
   box-shadow: none;
 }
-
-/* Accordion */
+ 
 .accordion-item {
   border: 1px solid #ebeef4;
 }
@@ -328,8 +302,7 @@ h6 {
   color: #51678f;
   font-weight: 600;
 }
-
-/* Bordered Tabs */
+ 
 .nav-tabs-bordered {
   border-bottom: 2px solid #ebeef4;
 }
@@ -350,10 +323,7 @@ h6 {
   color: #4154f1;
   border-bottom: 2px solid #4154f1;
 }
-
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
+ 
 .logo {
   line-height: 1;
 }
@@ -382,8 +352,6 @@ h6 {
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: black;
     padding-left: 20px;
-  /* Toggle Sidebar Button */
-  /* Search Bar */
 }
 
 .header .toggle-sidebar-btn {
@@ -454,9 +422,6 @@ h6 {
   color: #012970;
 }
 
-/*--------------------------------------------------------------
-# Header Nav
---------------------------------------------------------------*/
 .header-nav ul {
   list-style: none;
 }
@@ -596,9 +561,6 @@ h6 {
   background-color: #f6f9ff;
 }
 
-/*--------------------------------------------------------------
-# Sidebar
---------------------------------------------------------------*/
 .sidebar {
   position: fixed;
   top: 60px;
@@ -758,11 +720,7 @@ h6 {
 .sidebar-nav .nav-content a.active i {
   background-color: #4154f1;
 }
-
-/*--------------------------------------------------------------
-# Dashboard
---------------------------------------------------------------*/
-/* Filter dropdown */
+ 
 .dashboard .filter {
   position: absolute;
   right: 0px;
@@ -799,8 +757,7 @@ h6 {
 .dashboard .filter .dropdown-item {
   padding: 8px 15px;
 }
-
-/* Info Cards */
+ 
 .dashboard .info-card {
   padding-bottom: 10px;
 }
@@ -836,8 +793,7 @@ h6 {
   color: #ff771d;
   background: #ffecdf;
 }
-
-/* Activity */
+ 
 .dashboard .activity {
   font-size: 14px;
 }
@@ -883,8 +839,7 @@ h6 {
 .dashboard .activity .activity-item:last-child .activity-content {
   padding-bottom: 0;
 }
-
-/* News & Updates */
+ 
 .dashboard .news .post-item+.post-item {
   margin-top: 15px;
 }
@@ -916,8 +871,7 @@ h6 {
   color: #777777;
   margin-left: 95px;
 }
-
-/* Recent Sales */
+ 
 .dashboard .recent-sales {
   font-size: 14px;
 }
@@ -937,8 +891,7 @@ h6 {
 .dashboard .recent-sales .dataTable-bottom {
   padding: 10px 0 0 0;
 }
-
-/* Top Selling */
+ 
 .dashboard .top-selling {
   font-size: 14px;
 }
@@ -959,10 +912,7 @@ h6 {
   border-radius: 5px;
   max-width: 60px;
 }
-
-/*--------------------------------------------------------------
-# Icons list page
---------------------------------------------------------------*/
+ 
 .iconslist {
   display: grid;
   max-width: 100%;
@@ -995,10 +945,7 @@ h6 {
   white-space: nowrap;
   color: #666;
 }
-
-/*--------------------------------------------------------------
-# Profie Page
---------------------------------------------------------------*/
+ 
 .profile .profile-card img {
   max-width: 120px;
 }
@@ -1049,10 +996,7 @@ h6 {
 .profile .profile-edit img {
   max-width: 120px;
 }
-
-/*--------------------------------------------------------------
-# F.A.Q Page
---------------------------------------------------------------*/
+ 
 .faq .basic h6 {
   font-size: 18px;
   font-weight: 600;
@@ -1062,10 +1006,7 @@ h6 {
 .faq .basic p {
   color: #6980aa;
 }
-
-/*--------------------------------------------------------------
-# Contact
---------------------------------------------------------------*/
+ 
 .contact .info-box {
   padding: 28px 30px;
 }
@@ -1172,11 +1113,7 @@ h6 {
   100% {
     transform: rotate(360deg);
   }
-}
-
-/*--------------------------------------------------------------
-# Error 404
---------------------------------------------------------------*/
+} 
 .error-404 {
   padding: 30px;
 }
@@ -1211,10 +1148,7 @@ h6 {
     max-width: 50%;
   }
 }
-
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
+ 
 .footer {
   padding: 20px 0;
   font-size: 14px;
@@ -1237,7 +1171,7 @@ h6 {
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   border-radius: 10px;
-  margin: 20px auto; /* Center horizontally */
+  margin: 20px auto;  
   max-width: 400px;
 }
 .nav-item:active{
@@ -1318,13 +1252,12 @@ background: none;
 }
 
 .table-responsive table thead th {
-  /* Your styles here */
+  
   font-size: 16px;
   font-weight: bold;
   border-bottom: black;
   border-bottom-style: inherit;
-  /* Add other styles as needed */
-}
+ }
 
 
 @media (max-width : 765px){

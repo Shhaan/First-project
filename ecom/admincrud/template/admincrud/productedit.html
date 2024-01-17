@@ -68,6 +68,24 @@
  
   <br>
 
+  
+  <label for="tax" class="styled-label">Tax:</label>
+  <select name="tax" class="styled-input">
+    {% if i.tax_rate %}
+     <option value="{{ i.tax_rate.name }}">{{ i.tax_rate.name }} {{ i.tax_rate.rate }}%</option>
+     {% else %}
+     <option value="None">-----</option>
+
+   {% endif %}
+    
+     {% for j in tax %}
+     {% if j.name != i.tax_rate.name %}
+         <option value="{{ j.name }}">{{ j.name }} {{ j.rate }}%</option>
+     {% endif %}
+ {% endfor %}
+  </select>
+   
+  <br>
   <label for="status" class="styled-label">Status:</label>
   <select name="status" class="styled-input">
     {% if  i.status == "true" %}

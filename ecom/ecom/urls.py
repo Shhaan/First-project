@@ -15,21 +15,27 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
-    path('d-admin/', admin.site.urls),
-    path('',include(('usermain.urls' ,'usermain'),namespace='usermain')),
-    path('admin-panel/',include(('adminhome.urls' ,'adminhome'),namespace='adminhome')),
-    path('admin-panel/',include(('admincrud.urls' ,'admincrud'),namespace='admincrud')),
-    path('',include(('productdetail.urls' ,'productdetail'),namespace='productdetail')),
-    path('profile/',include(('userprofile.urls' ,'userprofile'),namespace='userprofile')),
-    path('',include(('userorder.urls' ,'userorder'),namespace='userorder')),
-    
-    
-    
-    
-]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
+urlpatterns = [
+    path("d-admin/", admin.site.urls),
+    path("", include(("usermain.urls", "usermain"), namespace="usermain")),
+    path(
+        "admin-panel/", include(("adminhome.urls", "adminhome"), namespace="adminhome")
+    ),
+    path(
+        "admin-panel/", include(("admincrud.urls", "admincrud"), namespace="admincrud")
+    ),
+    path(
+        "", include(("productdetail.urls", "productdetail"), namespace="productdetail")
+    ),
+    path(
+        "profile/",
+        include(("userprofile.urls", "userprofile"), namespace="userprofile"),
+    ),
+    path("", include(("userorder.urls", "userorder"), namespace="userorder")),
+    path("paypal/", include("paypal.standard.ipn.urls")),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

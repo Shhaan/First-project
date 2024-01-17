@@ -1,0 +1,38 @@
+{% extends 'adminhome/dashbord.html' %}
+
+{% block content %}
+
+<form method="post" action="{% url 'admincrud:edit-tax' tax_id=tax.id  %}" enctype="multipart/form-data" class="styled-form">
+  {% csrf_token %}
+
+  
+
+  <label for="brand_name" class="styled-label">Tax name:</label>
+  <input type="text" value="{{tax.name}}" name="name" class="styled-input">
+  {% if errors.name %}
+<h1 class="signup-errors">{{ errors.name }}</h1>
+{% endif %}
+{% if errors.tax_exits %}
+<h1 class="signup-errors">{{ errors.tax_exits }}</h1>
+{% endif %}
+<br>
+
+<label for="discount" class="styled-label" > Percentage :</label> <br>
+<input type="number" value="{{tax.rate}}" class="styled-input" step="0.1" name="percentage" class="file-image">
+
+{% if errors.percentage %}
+<h1 class="signup-errors">{{ errors.percentage }}</h1>
+{% endif %}
+<br>
+
+
+  <button type="submit" style="display: block;margin: auto;" class="styled-button">Submit</button>
+
+</form>
+
+{% endblock %}
+
+{% block link %}
+{% load static %}
+<link href="{% static 'admincrud/css/style.css' %}" rel="stylesheet">
+  {% endblock %}

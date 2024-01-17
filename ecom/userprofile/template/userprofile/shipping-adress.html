@@ -1,0 +1,32 @@
+{% extends 'userprofile/profile.html' %}
+{% load crispy_forms_tags %}
+
+{% block titleprofile %}
+Manage shipping address
+{% endblock %}
+{% block details %}
+
+{% if address_shipping %}
+  <div style="background: aliceblue;overflow: auto;height: 313px;" class="col-7 col-md-4 col-lg-3">
+    {% for i in address_shipping %}
+     <div class="mb-3 mt-3">
+        <a href="{% url 'userprofile:adress-detail' id=i.id %}">
+
+        <label style="font-size: 11px;"   class="form-label">{{i}}</label></a>
+          
+    </div> <hr>
+    {% endfor %}
+    
+</div>  
+{% endif %}
+ {% if address_shipping.count < 3 %}
+<div style="background: aliceblue;margin-top:10px" class="col-7 col-md-4 col-lg-3">
+    <form method="post" action="{% url 'userprofile:adress-manage' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+      
+    <button type="submit" class=" mb-2 btn btn-primary">Submit</button>
+</form>
+</div>
+{% endif %}
+ {% endblock %}

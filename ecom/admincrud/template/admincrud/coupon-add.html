@@ -1,0 +1,39 @@
+{% extends 'adminhome/dashbord.html' %}
+
+{% block content %}
+<h1 class="text-center mb-5" id="heading-product">Add Coupon</h1>
+
+<form method="post" action="{% url 'admincrud:add-coupon'  %}" enctype="multipart/form-data" class="styled-form">
+  {% csrf_token %}
+
+  
+
+  <label for="brand_name" class="styled-label">Coupon code:</label> <br>
+  <input type="text" name="code" class="styled-input">
+  {% if errors.code %}
+<h1 class="signup-errors">{{ errors.code }}</h1>
+{% endif %}
+{% if errors.code_exists %}
+<h1 class="signup-errors">{{ errors.code_exists }}</h1>
+{% endif %}
+<br>
+  <label for="images">discound price:</label><br>
+  <input type="number" step="0.1" name="discount" class="styled-input">
+
+  
+{% if errors.discount %}
+<h1 class="signup-errors">{{ errors.discount }}</h1>
+{% endif %}
+<br>
+<br>
+
+
+  <button type="submit" style="display: block;margin: auto;" class="styled-button">Submit</button>
+
+</form>
+{% endblock %}
+
+{% block link %}
+{% load static %}
+<link href="{% static 'admincrud/css/style.css' %}" rel="stylesheet">
+  {% endblock %}

@@ -4,16 +4,15 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('admin', '0001_initial'),
-        ('auth', '0012_alter_user_first_name_max_length'),
-        ('usermain', '0005_rename_users_customer'),
+        ("admin", "0001_initial"),
+        ("auth", "0012_alter_user_first_name_max_length"),
+        ("usermain", "0005_rename_users_customer"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='customer',
-            new_name='Users',
+            old_name="customer",
+            new_name="Users",
         ),
     ]

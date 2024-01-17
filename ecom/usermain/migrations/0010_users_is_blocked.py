@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('usermain', '0009_users_otp'),
+        ("usermain", "0009_users_otp"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='users',
-            name='is_blocked',
+            model_name="users",
+            name="is_blocked",
             field=models.BooleanField(default=False),
         ),
     ]

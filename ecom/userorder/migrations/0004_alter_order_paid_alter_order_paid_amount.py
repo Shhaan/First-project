@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('userorder', '0003_remove_order_email'),
+        ("userorder", "0003_remove_order_email"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='order',
-            name='paid',
+            model_name="order",
+            name="paid",
             field=models.BooleanField(default=False, null=True),
         ),
         migrations.AlterField(
-            model_name='order',
-            name='paid_amount',
+            model_name="order",
+            name="paid_amount",
             field=models.BigIntegerField(null=True),
         ),
     ]

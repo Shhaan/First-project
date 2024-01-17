@@ -4,22 +4,20 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('otp_totp', '0002_auto_20190420_0723'),
-        ('usermain', '0006_rename_customer_users'),
+        ("otp_totp", "0002_auto_20190420_0723"),
+        ("usermain", "0006_rename_customer_users"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CustomTOTPDevice',
-            fields=[
-            ],
+            name="CustomTOTPDevice",
+            fields=[],
             options={
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=('otp_totp.totpdevice',),
+            bases=("otp_totp.totpdevice",),
         ),
     ]

@@ -60,9 +60,10 @@ Edit profile
         <h1 class="signup-errors per-edit-error">{{ errors.address }}</h1>
       {% endif %}
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class=" mb-2 btn btn-primary">Submit</button>
 </form>
 
+<a href="{% url 'userprofile:change-password' email=user.email %}" class="mb-3 mt-3" style="display: inline-block;">Change password ?</a>
 </div>
 
 {% endblock %}

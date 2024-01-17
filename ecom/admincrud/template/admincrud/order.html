@@ -22,12 +22,14 @@
     <table class="table">
         <thead>
             <tr class="text-center">
-                <th scope="col">Order Id</th>
+                <th scope="col">No</th>
+                <th scope="col">order id</th>
+
+                <th scope="col">user mail</th>
                 <th scope="col">Product name</th>
                 <th scope="col">name</th>
                 <th scope="col">Order date</th>
                 <th scope="col">Sub total</th>
-                <th scope="col">Status</th>
                 <th colspan="2">Oprations</th>
             </tr>
         </thead>
@@ -35,7 +37,10 @@
           
             {% for i in orderitem %}
                 <tr class="text-center" style="vertical-align: middle;">
-                    <td class="t-body-cutomer">{{ i.id }}</td>
+                    <td class="t-body-cutomer">{{ forloop.counter }}</td>
+                    <td class="t-body-cutomer">{{i.order.pk}}</td>
+
+                    <td class="t-body-cutomer">{{ i.order.user.email }}</td>
                    
                     <td class="t-body-cutomer"><a href="{% url 'admincrud:order-detail'  id=i.id %}"> {{ i.product.product_name }} </a></td>
                     <td class="t-body-cutomer">{{ i.order.user.first_name }}</td>
@@ -45,14 +50,13 @@
 
                     <td class="t-body-cutomer sub" >{{i.sub_total}}</td>
 
-                    <td class="t-body-cutomer">{{ i.order.status }}</td>
 
                     <td class="t-body-cutomer">
                         {% if i.order.status == 'pending' %}
                                 {% if i.order.is_deleted == False %}
                                 <a href="{% url 'admincrud:cancel-order'  id=i.order.id %}" style="color: rgb(204, 81, 81);">Cancel</a>
                                 {% elif i.order.is_deleted == True %}
-                                <a href="{% url 'admincrud:uncancel-order'  id=i.order.id %}" style="color: rgb(76, 179, 76);">uncancel</a>
+                                <h3 class="t-body-cutomer">Order Cancelled</h3>
                                 {% endif %}
                         {% else %}
                         Delivered
@@ -60,11 +64,7 @@
                     </td>
          
                  
-                    <!-- {% if i.is_deleted == False %}
-                        <td class="t-body-cutomer"><a id="Block-user" href="{% url 'admincrud:unlist-product' product_id=i.id %}">Unlist</a></td>
-                    {% else %}
-                        <td class="t-body-cutomer"><a id="unblock-user" href="{% url 'admincrud:list-product' product_id=i.id %}">List</a></td>
-                    {% endif %} -->
+               
                 </tr>
             {% endfor %}
         

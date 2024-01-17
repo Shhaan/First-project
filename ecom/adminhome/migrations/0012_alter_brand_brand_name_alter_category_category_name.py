@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('adminhome', '0011_brand_is_deleted_category_is_deleted_and_more'),
+        ("adminhome", "0011_brand_is_deleted_category_is_deleted_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='brand',
-            name='brand_name',
+            model_name="brand",
+            name="brand_name",
             field=models.CharField(max_length=40, unique=True),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='Category_name',
+            model_name="category",
+            name="Category_name",
             field=models.CharField(max_length=40, unique=True),
         ),
     ]

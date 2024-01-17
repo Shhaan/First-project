@@ -4,19 +4,18 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('userorder', '0004_alter_order_paid_alter_order_paid_amount'),
+        ("userorder", "0004_alter_order_paid_alter_order_paid_amount"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='orderitem',
-            old_name='price',
-            new_name='sub_total',
+            model_name="orderitem",
+            old_name="price",
+            new_name="sub_total",
         ),
         migrations.RemoveField(
-            model_name='orderitem',
-            name='quantity',
+            model_name="orderitem",
+            name="quantity",
         ),
     ]

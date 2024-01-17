@@ -4,15 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('usermain', '0001_initial'),
+        ("usermain", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelManagers(
-            name='users',
-            managers=[
-            ],
+            name="users",
+            managers=[],
         ),
     ]

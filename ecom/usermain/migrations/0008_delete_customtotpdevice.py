@@ -4,13 +4,12 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('usermain', '0007_customtotpdevice'),
+        ("usermain", "0007_customtotpdevice"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='CustomTOTPDevice',
+            name="CustomTOTPDevice",
         ),
     ]

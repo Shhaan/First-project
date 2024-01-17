@@ -1,0 +1,201 @@
+{% extends 'userorder/checkout.html' %}
+
+{% block form %}
+<form action="{% url 'userorder:payment-detail' slug=product.slug  o=o_slug ot=ot_slug  %}" method="post">
+    {% csrf_token %}
+    <div style="display: flex; flex-direction: column;">
+        
+        <div class="shipping-divs" onclick="selectRadioButton('cash_on_delivery')">
+            <input type="radio" id="cash_on_delivery" value="cash_on_delivery" name="payment" style="width: 27px; height: 23px;">
+            <div style="display: flex; flex-direction: column; margin-left: 0;">
+                <label for="cash_on_delivery">Cash on delivery</label>
+            </div>
+        </div>
+
+        <div class="shipping-divs" onclick="selectRadioButton('pay_by_wallet')">
+            <input type="radio" id="pay_by_wallet" value="pay_by_wallet" name="payment" style="width: 27px; height: 23px;">
+            <div style="display: flex; flex-direction: column; margin-left: 0;">
+                <label for="pay_by_wallet">Pay by Wallet</label>
+            </div>
+        </div>
+
+     
+
+        
+    </div>
+    {% for i in messages %}
+
+    {% if i.tags == 'info' %}
+
+    <h1 class="signup-errors mt-0"> {{i}} </h1> {% endif %}
+    {% endfor %}
+    <div class="form-group text-end">
+        <button type="submit" class="btn btn-primary">Continue</button>
+    </div>
+
+   
+
+    
+</form>
+  
+<div class="">
+    <div id="papypal" style="display: flex; flex-direction: column; margin-left: 0;">
+        <label for="">Paypal</label>
+    </div>
+{{form.render}}
+</div>
+<script>
+    function selectRadioButton(value) {
+        // Unselect all radio buttons
+        document.querySelectorAll('input[name="payment"]').forEach(function (radio) {
+            radio.checked = false;
+        });
+ 
+        const radioButton = document.getElementById(value);
+        radioButton.checked = true;
+    }
+</script>
+
+
+
+{% endblock %}
+
+{% block stage %}
+<hr class="col-4   col-md-5 col-lg-4" id="hr-123" style="background: black;  height: 3px;  position: absolute; top: 214px;">
+<div style="display: flex; position: relative;justify-content: space-around;">
+  <div class="stage-checkout" style="position: absolute;bottom: 41px;left: 7px;color: black;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  </svg></div>
+  <div class="stage-checkout" style="position: absolute;bottom: 41px;color: black;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  </svg></div>
+  <div class="stage-checkout" style="position: absolute;bottom: 41px;right: 7px;background-color: rgb(54, 54, 141);color: #fff">3</div>    
+
+</div>
+{% endblock %} 
+{% block total %}
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<div class="mt-3 ms-3">
+    <h1 class="productname">Subtotal: Rs. <span id="subTotal">{{ order.sub_total }}</span>.00</h1>
+    {% if product.tax_rate.rate %}
+    <h3 class="productname">Tax: <span id="tax">{{ product.tax_rate.rate }}</span>%</h3>
+    {% endif %}
+    <h1 class="productname">Shipping: Rs. <span id="shippingPrice">{{ order.shipping_option.shipping_price }}</span>.00</h1>
+</div>
+
+<div class="mt-2">
+  <hr class="col-8 m-auto">
+</div>
+
+<div class="mt-3 ms-3">
+{% if c %}
+    <h1 class="productname">Category offer: {{c}}</h1>{% endif %}
+
+    <h1 class="productname">Total: Rs. <span id="total"></span></h1>
+</div>
+<p id="coupon_persentage"  style="display: none;">
+    {% if order_coupon.coupon %}{{ order_coupon.coupon.discount_percentage }}{% else %}0{% endif %}
+
+</p>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            calculateTotal();
+        
+            function calculateTotal() {
+                const subTotalElement = document.getElementById("subTotal");
+                const shippingPriceElement = document.getElementById("shippingPrice");
+                const taxElement = document.getElementById('tax');
+                const csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+        
+                const subTotal = subTotalElement ? parseFloat(subTotalElement.innerText) : 0;
+                const shippingPrice = shippingPriceElement ? parseFloat(shippingPriceElement.innerText) : 0;
+                const taxRate = taxElement ? parseFloat(taxElement.innerText) : 0;
+        
+                const couponElement = document.getElementById('coupon_persentage');
+                const coupon = couponElement ? parseFloat(couponElement.innerHTML) : 0;
+        
+                const dataToSend = {
+                    subTotal: subTotal,
+                    shippingPrice: shippingPrice,
+                    taxRate: taxRate,
+                    coupon: coupon
+                };
+        
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'userorder:payment-detail' slug=product.slug o=o_slug ot=ot_slug %}",
+                    data: JSON.stringify(dataToSend),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRFToken': csrfToken   
+                    },
+                    success: function (response) {
+                        document.getElementById("total").innerText = response.total;
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+        });
+        
+    </script>
+    
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        calculateTotal();
+    
+        function calculateTotal() {
+            const subTotal = parseFloat(document.getElementById("subTotal").innerText);
+            const shippingPrice = parseFloat(document.getElementById("shippingPrice").innerText);
+
+            let taxRate = 0;
+
+            const taxElement = document.getElementById('tax');
+            if (taxElement) {
+                taxRate = parseFloat(taxElement.innerText);
+            }
+
+
+            const couponElement = document.getElementById('coupon_persentage').innerHTML;
+      
+            const taxAmount = (subTotal * taxRate) / 100;
+            c = parseInt(couponElement)
+            let total = 0;
+            if (c == 0 ){
+             total = (subTotal + shippingPrice + taxAmount) ;}
+            else{
+                 total = (subTotal + shippingPrice + taxAmount) - parseFloat(couponElement / 100);
+            }
+            
+                 
+            document.getElementById("total").innerText = total.toFixed(1);
+            document.getElementById("input").value = total.toFixed(2);
+        }
+    });
+</script> -->
+{% endblock %}
+
+{% block coupen %}
+<form action="{% url 'userorder:apply-coupon' slug=product.slug o=o_slug ot=ot_slug  %}" method="post" style="display: flex; justify-content: space-evenly;">
+     {% csrf_token %}
+     <input type="hidden" value="{{product.slug}}" name="slug">
+    <input name="c" type="text" placeholder="Coupon code" style="max-width: 64%; margin-left: 10px;" class="  form-control" id="c">
+ 
+    <button  type="submit" class="btn btn-primary " style="max-width: 17%;" ><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+    </svg></button>  
+    
+  </form>
+  {% for i in messages %}
+  <h6 class="productname" style="margin-left: 32px;margin-top: 11px;color: rgb(236, 87, 18);">
+    {% if i.tags == 'error' %}
+ 
+    {{i}}  {% endif %}</h6>
+  {% endfor %}
+  {% if order_coupon.coupon %} <h6 class="productname" style="margin-left: 32px;margin-top: 11px;color: rgb(12, 163, 80);"> coupon added of  {{ order_coupon.coupon.discount_percentage }}% </h6>{% endif %}
+  {% endblock %}

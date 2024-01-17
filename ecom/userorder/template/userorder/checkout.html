@@ -4,6 +4,7 @@
 <div style="display: flex;flex-direction:row;margin-top: 12rem;justify-content: space-around;">
  
 <div class="col-4   col-md-5 col-lg-4" >
+  {% block stage %}
   <hr class="col-4   col-md-5 col-lg-4" id="hr-123" style="background: black;  height: 3px;  position: absolute; top: 214px;">
   <div style="display: flex; position: relative;justify-content: space-around;">
     <div class="stage-checkout" style="position: absolute;bottom: 41px;left: 7px;background-color: rgb(54, 54, 141);color: #fff;border: none;">1</div>
@@ -11,7 +12,10 @@
     <div class="stage-checkout" style="position: absolute;bottom: 41px;right: 7px;">3</div>    
   
   </div>
+  {% endblock %}
 {% block form %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <form action="{% url 'userorder:checkout' slug=product.slug %}" method="post">
   {% csrf_token %}
     <div class="row">
@@ -40,6 +44,7 @@
        <h1 class="signup-errors mt-0">{{errors.Address}}</h1>
       {% endif %}
       </div><br>
+   
     <div class="form-row">
       <div class="form-group col-md-6">
         <input type="text" class="form-control" name="country" placeholder="Country" id="inpuCountry">
@@ -54,6 +59,15 @@
        {% endif %}
 
       </div><br>
+
+      <div class="form-group col-md-4">
+        <input type="text" class="form-control" name="district" placeholder="District" id="inputdic">
+        {% if errors.district %}
+        <h1 class="signup-errors mt-0">{{errors.district}}</h1>
+       {% endif %}
+
+      </div><br>
+
       <div class="form-group col-8 col-md-4">
          <input type="text" placeholder="Postal Code" name="postalcode" class="form-control" id="inputZip">
          {% if errors.postalcode %}
@@ -61,11 +75,21 @@
         {% endif %}
       </div>
     </div><br>
-    <div class="form-group text-end">
+
+ 
+
+
+
+
+  <div class="form-group text-end">
      
     <button type="submit" class="btn btn-primary ">Continue</button></div>
   </form>
-  {% endblock %}
+
+
+
+
+   {% endblock %}
 
 </div>
 
@@ -78,32 +102,40 @@
     <h1 class="productname">{{product.product_name}}</h1>
     <h3 id="productprice">Rs.{{product.product_price}}</h3>  
      </div>
+
   </div>
-  <form action="" style="display: flex; justify-content: space-evenly;">
-     
-  <input name="coupon" type="text" placeholder="Coupon code" style="max-width: 64%; margin-left: 10px;" class="  form-control" id="coupon">
-  <button  type="submit" class="btn btn-primary " style="max-width: 17%;" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
-    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-  </svg></button>  
-  
-</form>
+  {% block coupen%}
+ 
+{% endblock %}
 <div class="mt-5">
   <hr class="col-8 m-auto">
 </div>
-
+{% block total %}
 <div class="mt-3 ms-3">
-  <h1 class="productname">Sub total :  </h1>
-  <h3 class="productname">Tax :</h3>
+  <h1 class="productname">Sub total : {{subtotal}} </h1>
+  {% if product.tax_rate.rate %}
+  <h3 class="productname">Tax :{{product.tax_rate.rate}}%</h3>
+  {% endif %}
   <h1 class="productname">Shipping :</h1>
+  
 </div>
 
 <div class="mt-2">
   <hr class="col-8 m-auto">
 </div>
-<div class="mt-3 ms-3">
+<div class="mt-3 ms-3 mb-5">
+  {% if d %}
+  <h1 class="productname mb-5">Category offer: Rs.{{d}}</h1>
+  {% endif %}
+  <h1 class="productname mb-5">Total {{total_context}}</h1>
+
   
-  <h1 class="productname">Total</h1>
 </div>
+
+
+
+
+{% endblock %}
 </div>
 
 

@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('userorder', '0006_orderitem_quantity'),
+        ("userorder", "0006_orderitem_quantity"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='order',
-            name='is_deleted',
+            model_name="order",
+            name="is_deleted",
             field=models.BooleanField(default=False),
         ),
     ]

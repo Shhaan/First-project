@@ -1,0 +1,96 @@
+{% extends 'userorder/checkout-bulk.html' %}
+
+{% block stage %}
+<hr class="col-4   col-md-5 col-lg-4" id="hr-123" style="background: black;  height: 3px;  position: absolute; top: 214px;">
+<div style="display: flex; position: relative;justify-content: space-around;">
+    <div class="stage-checkout" style="position: absolute;bottom: 41px;left: 7px;color: black;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  </svg></div>
+  <div class="stage-checkout" style="position: absolute;bottom: 41px;background-color: rgb(54, 54, 141);color: #ffffff;right: 15px;">2</div>
+
+
+
+</div>
+{% endblock %}
+
+{% block form %}
+<form action="{% url 'userorder:bulk-buy-payment' order_slug=o  o=ot  %}" method="post">
+    {% csrf_token %}
+    <div style="display: flex; flex-direction: column;">
+        
+        <div class="shipping-divs" onclick="selectRadioButton('cash_on_delivery')">
+            <input type="radio" id="cash_on_delivery" value="cash_on_delivery" name="payment" style="width: 27px; height: 23px;">
+            <div style="display: flex; flex-direction: column; margin-left: 0;">
+                <label for="cash_on_delivery">Cash on delivery</label>
+            </div>
+        </div>
+        
+        <div class="shipping-divs" onclick="selectRadioButton('pay_by_wallet')">
+            <input type="radio" id="pay_by_wallet" value="pay_by_wallet" name="payment" style="width: 27px; height: 23px;">
+            <div style="display: flex; flex-direction: column; margin-left: 0;">
+                <label for="pay_by_wallet">Pay by Wallet</label>
+            </div>
+        </div>
+
+        {% for i in messages %}
+
+        {% if i.tags == 'info' %}
+    
+        <h1 class="signup-errors mt-0"> {{i}} </h1> {% endif %}
+        {% endfor %}
+
+        
+    </div>
+    <div class="form-group text-end">
+        <button type="submit" class="btn btn-primary">Continue</button>
+    </div>
+
+   
+
+     
+</form>
+  
+<div>
+    <div style="display: flex; flex-direction: column; margin-left: 0;">
+        <label for="">Paypal</label>
+    </div>
+{{form.render}}
+</div>
+<script>
+    function selectRadioButton(value) {
+        // Unselect all radio buttons
+        document.querySelectorAll('input[name="payment"]').forEach(function (radio) {
+            radio.checked = false;
+        });
+ 
+        const radioButton = document.getElementById(value);
+        radioButton.checked = true;
+    }
+</script>
+
+
+
+{% endblock %}
+{% block shipping %}  
+<h3 id="productprice">shipping price.{{sh_price}}</h3> 
+{% endblock %}
+
+
+{% block coupen %}
+<form action="{% url 'userorder:apply-coupon-cart' order_slug=o  o=ot  %}" method="post" style="display: flex; justify-content: space-evenly;" class="mt-2">
+     {% csrf_token %}
+    <input name="c" type="text" placeholder="Coupon code" style="max-width: 64%; margin-left: 10px;" class="  form-control" id="c">
+ 
+    <button  type="submit" class="btn btn-primary " style="max-width: 17%;" ><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+    </svg></button>  
+    
+  </form>
+  {% for i in messages %}
+  <h6 class="productname" style="margin-left: 32px;margin-top: 11px;color: rgb(236, 87, 18);">
+    {% if i.tags == 'error' %}
+ 
+    {{i}}  {% endif %}</h6>
+  {% endfor %}
+  {% if c_open %} <h6 class="productname" style="margin-left: 32px;margin-top: 11px;color: rgb(12, 163, 80);"> coupon added of  {{ c_open.first.coupon.discount_percentage }}% </h6>{% endif %}
+  {% endblock %}

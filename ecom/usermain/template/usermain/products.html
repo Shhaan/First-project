@@ -1,10 +1,109 @@
 {% extends 'usermain/Home.html' %}
 
 {%  block content %}
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <section class="bg0 p-t-23 p-b-140 mt-5">
+	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
-			<div class="row isotope-grid">
+			<div class="flex-w flex-sb-m p-b-52">
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+					<form action="{% url 'usermain:products' %}" method="get">
+					<button class="stext-106 cl6  bor3 trans-04 m-r-32 m-tb-5 " >
+						All Products
+					</button></form>
+					<form action="{% url 'usermain:products' %}" method="get">
+					<button type="submit" class="stext-106 cl6  bor3 trans-04 m-r-32 m-tb-5" >
+						<input type="hidden" value="Women" name="women">
+						Women
+					</button>
+				  </form> 
+					<form action="{% url 'usermain:products' %}" method="get">
+						<input type="hidden" value="men" name="men">
+
+					<button class="stext-106 cl6  bor3 trans-04 m-r-32 m-tb-5" >
+						Men
+					</button>
+</form>
+					
+				</div>
+				<form action="{% url 'usermain:products' %}" method="get">
+				<div class="flex-w flex-c-m m-tb-10">
+					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						 Filter
+					</div>
+
+
+
+				<!-- Filter -->
+				<div id="disl" class="dis-none panel-filter  p-t-10" style="position: absolute; right: 7px; z-index: 10; 	top: 193px;background-color: #f2f2f2; ">
+					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm" style="justify-content: space-around;overflow: auto;" >
+						<div class="filter-col1 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Category
+							</div>
+
+							<ul>
+								{% for i in category %}
+								<li class="p-b-6 mb-2">
+									<div style="display: flex;gap: 10px">
+									<input type="checkbox" name="category_check"  value="{{i.Category_name}}" {% if i.Category_name in filter_category %} checked {% endif %}  class="category_check">
+									<h4  class=" stext-106  ">
+										{{i.Category_name}}
+									</h4></div>
+								</li>{% endfor %}
+
+								
+							</ul>
+						</div>
+
+
+
+						
+						<div class="filter-col1 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15 ">
+								Brand
+							</div>
+
+							<ul>{% for i in brands %}
+								<li class="p-b-6 mb-2"><div style="display: flex;gap: 10px">
+									<input type="checkbox" value="{{i.brand_name}}" {% if i.brand_name in filter_brand %} checked {% endif %} name="brand_check"   class="brand_check" >
+									<h4   class=" stext-106  ">
+										{{i.brand_name}}
+									</h4></div>
+								</li>
+{% endfor %}
+
+
+						
+							</ul>
+							
+						</div> 
+						<div >
+							<label for="min_price" class="stext-106">Min price</label>
+							<input type="number" name="min_price"><br>
+							<label for="max_price" class="stext-106">Max price</label>
+
+							<input type="number" name="max_price" class="mb-3">
+					</div>
+					</div><div class="text-center mb-3"><button type="submit">Apply Filters</button></div>
+				</div>
+				</div>
+			 </form>
+			</div>
+
+			
+			
+
+		
+		</div>
+	</div>
+
+	
+	<div>
+		<div class="container">
+			<div class="row isotope-grid " id="hi">
 				{% for product in products %}
 					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 						<!-- Block2 -->
@@ -110,6 +209,8 @@
 										   </form>
 										</div>
 									</div>
+
+
 	</section>
 {% endblock %}
 {% block colorpi %} style="color: black;" {% endblock %}

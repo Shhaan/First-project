@@ -1,0 +1,39 @@
+{% extends 'adminhome/dashbord.html' %}
+
+{% block content %}
+<h1 class="text-center mb-5" id="heading-product">Add Tax</h1>
+
+<form method="post" action="{% url 'admincrud:add-tax'  %}" enctype="multipart/form-data" class="styled-form">
+  {% csrf_token %}
+
+  
+
+  <label for="brand_name" class="styled-label">Tax name:</label> <br>
+  <input type="text" name="name" class="styled-input">
+  {% if errors.name %}
+<h1 class="signup-errors">{{ errors.name }}</h1>
+{% endif %}
+{% if errors.name_exists %}
+<h1 class="signup-errors">{{ errors.name_exists }}</h1>
+{% endif %}
+<br>
+  <label for="images">Percentage:</label><br>
+  <input type="number" step="0.1" name="percentage" class="styled-input">
+
+  
+{% if errors.percentage %}
+<h1 class="signup-errors">{{ errors.percentage }}</h1>
+{% endif %}
+<br>
+<br>
+
+
+  <button type="submit" style="display: block;margin: auto;" class="styled-button">Submit</button>
+
+</form>
+{% endblock %}
+
+{% block link %}
+{% load static %}
+<link href="{% static 'admincrud/css/style.css' %}" rel="stylesheet">
+  {% endblock %}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .order-details {
+            margin-top: 20px;
+        }
+
+        .thank-you {
+            font-size: 24px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .continue-shopping {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Order Successful</h1>
+        <p class="thank-you">Thank you for your purchase!</p>
+        <p>Your order has been placed successfully.</p>
+        <div class="order-details">
+            <p><strong>Order ID:</strong>{{order_id}}</p>
+            <p><strong>Total Amount:</strong> {{t}}</p>
+            {% if  PayerID %}
+            <p><strong>PayerID:</strong> {{PayerID}}</p>
+{% endif %}
+
+        </div>
+        <a href="/" class="continue-shopping">Continue Shopping</a>
+    </div>
+
+</body>
+</html>

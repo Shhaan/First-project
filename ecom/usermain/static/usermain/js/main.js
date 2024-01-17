@@ -2,8 +2,6 @@
 (function ($) {
     "use strict";
 
-    /*[ Load page ]
-    ===========================================================*/
     $(".animsition").animsition({
         inClass: 'fade-in',
         outClass: 'fade-out',
@@ -24,8 +22,6 @@
         transition: function(url){ window.location.href = url; }
     });
     
-    /*[ Back to top ]
-    ===========================================================*/
     var windowH = $(window).height()/2;
 
     $(window).on('scroll',function(){
@@ -41,8 +37,6 @@
     });
 
 
-    /*==================================================================
-    [ Fixed Header ]*/
     var headerDesktop = $('.container-menu-desktop');
     var wrapMenu = $('.wrap-menu-desktop');
 
@@ -75,8 +69,6 @@
     });
 
 
-    /*==================================================================
-    [ Menu mobile ]*/
     $('.btn-show-menu-mobile').on('click', function(){
         $(this).toggleClass('is-active');
         $('.menu-mobile').slideToggle();
@@ -109,8 +101,6 @@
     });
 
 
-    /*==================================================================
-    [ Show / hide modal search ]*/
     $('.js-show-modal-search').on('click', function(){
         $('.modal-search-header').addClass('show-modal-search');
         $(this).css('opacity','0');
@@ -126,12 +116,10 @@
     });
 
 
-    /*==================================================================
-    [ Isotope ]*/
+     
     var $topeContainer = $('.isotope-grid');
     var $filter = $('.filter-tope-group');
 
-    // filter items on button click
     $filter.each(function () {
         $filter.on('click', 'button', function () {
             var filterValue = $(this).attr('data-filter');
@@ -140,7 +128,6 @@
         
     });
 
-    // init Isotope
     $(window).on('load', function () {
         var $grid = $topeContainer.each(function () {
             $(this).isotope({
@@ -167,8 +154,6 @@
         });
     });
 
-    /*==================================================================
-    [ Filter / Search product ]*/
     $('.js-show-filter').on('click',function(){
         $(this).toggleClass('show-filter');
         $('.panel-filter').slideToggle(400);
@@ -192,8 +177,6 @@
 
 
 
-    /*==================================================================
-    [ Cart ]*/
     $('.js-show-cart').on('click',function(){
         $('.js-panel-cart').addClass('show-header-cart');
     });
@@ -202,8 +185,6 @@
         $('.js-panel-cart').removeClass('show-header-cart');
     });
 
-    /*==================================================================
-    [ Cart ]*/
     $('.js-show-sidebar').on('click',function(){
         $('.js-sidebar').addClass('show-sidebar');
     });
@@ -212,8 +193,6 @@
         $('.js-sidebar').removeClass('show-sidebar');
     });
 
-    /*==================================================================
-    [ +/- num product ]*/
     $('.btn-num-product-down').on('click', function() {
         var numProduct = parseInt($(this).next().val(), 10);
         if (numProduct > 1) {
@@ -227,8 +206,7 @@
         $(this).prev().val(numProduct + 1);
         document.getElementById('i').value = numProduct + 1;
     });
-    /*==================================================================
-    [ Rating ]*/
+    
     $('.wrap-rating').each(function(){
         var item = $(this).find('.item-rating');
         var rated = -1;
@@ -269,27 +247,22 @@
         });
     });
     
-    /*==================================================================
-    [ Show modal1 ]*/
+  
    $('.js-show-modal1').on('click', function (e) {
     e.preventDefault();
 
-    // Get product information from data attributes
     var productName = $(this).data('product-name');
     var productPrice = $(this).data('product-price');
     var productDes = $(this).data('product-des');
     var productImages = $(this).data('product-images').split(',');
     
-    // Set product information in the modal
     $('#quick-view-name').text(productName);
     $('#quick-view-price').text(productPrice);
     $('#quick-view-des').text(productDes);
     $('#product_id').val(productName);
 
-    // Clear existing images in the modal gallery
     $('#modal-image-gallery').empty();
 
-    // Populate modal gallery with product images
     for (var i = 0; i < productImages.length; i++) {
         if (i == 1) {
             $('#modal-image-gallery').append(`
@@ -303,7 +276,6 @@
                 </div>
             `);
         } else {
-            // Hide the element at index 1
             $('#modal-image-gallery').append(`
                 <div class="item-slick3" style="display: none;" data-thumb="${productImages[i]}">
                     <div class="wrap-pic-w pos-relative">
@@ -316,12 +288,10 @@
             `);
         }
     }
-    // Show the modal
     $('#quick-view-modal').addClass('show-modal1');
 });
 
 $('.js-hide-modal1').on('click', function () {
-    // Hide the modal
     $('#quick-view-modal').removeClass('show-modal1');
 });
 
@@ -333,9 +303,8 @@ $('.js-hide-modal1').on('click', function () {
 })(jQuery);
 
 
-// brand over display
 const container = document.getElementById('brandContainer');
-const scrollAmount = 300; // Adjust the scroll amount as needed
+const scrollAmount = 300; 
 	
 			function scrollBrandImages(direction) {
 				if (direction === 'prev') {
@@ -346,9 +315,8 @@ const scrollAmount = 300; // Adjust the scroll amount as needed
 			}
 
  
-// category over display
 const categoryContainer = document.getElementById('categoryContainer');
-const categoryScrollAmount = 300; // Adjust the scroll amount as needed
+const categoryScrollAmount = 300; 
 
 function scrollCategory(direction) {
 if (direction === 'prev') {
@@ -359,7 +327,6 @@ if (direction === 'prev') {
 }
 
 
-// product image zoom in
 
 function setupImageZoom(imgElement) {
     let imgContainer = imgElement.parentElement;
@@ -413,21 +380,8 @@ document.querySelectorAll('.img-zoom').forEach(imgElement => {
 
 
 
-// subtotal
-function updateSubtotal(input) {
-     var cartItemId = input.getAttribute('data-cart-item-id');
 
-     var quantity = parseInt(input.value);
 
-     var priceString = document.querySelector('.cart-item[data-cart-item-id="' + cartItemId + '"] .product-price').innerHTML;
-    var price = parseFloat(priceString);
-
-     var subtotal = quantity * price;
-
-     document.getElementById('subtotal_' + cartItemId).innerHTML = subtotal.toFixed(2);
-}
-
-//  this is hidden input in product detail
 document.getElementById('i').value = document.getElementById('in').value;
 
 document.getElementById('in').addEventListener('input', function() {
@@ -445,3 +399,9 @@ function down() {
         document.getElementById('i').value = currentValue - 1;
     }
 }
+
+
+
+
+
+

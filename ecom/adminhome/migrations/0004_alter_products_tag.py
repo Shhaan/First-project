@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('adminhome', '0003_remove_brand_slug_remove_category_slug'),
+        ("adminhome", "0003_remove_brand_slug_remove_category_slug"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='products',
-            name='tag',
+            model_name="products",
+            name="tag",
             field=models.CharField(blank=True, max_length=20, null=True),
         ),
     ]

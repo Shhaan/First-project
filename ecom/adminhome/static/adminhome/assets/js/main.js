@@ -1,16 +1,7 @@
-/**
-* Template Name: NiceAdmin
-* Updated: Sep 18 2023 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+ 
 (function() {
   "use strict";
-
-  /**
-   * Easy selector helper function
-   */
+ 
   const select = (el, all = false) => {
     el = el.trim()
     if (all) {
@@ -20,9 +11,7 @@
     }
   }
 
-  /**
-   * Easy event listener function
-   */
+   
   const on = (type, el, listener, all = false) => {
     if (all) {
       select(el, all).forEach(e => e.addEventListener(type, listener))
@@ -30,35 +19,26 @@
       select(el, all).addEventListener(type, listener)
     }
   }
-
-  /**
-   * Easy on scroll event listener 
-   */
+ 
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
   }
 
-  /**
-   * Sidebar toggle
-   */
+   
   if (select('.toggle-sidebar-btn')) {
     on('click', '.toggle-sidebar-btn', function(e) {
       select('body').classList.toggle('toggle-sidebar')
     })
   }
 
-  /**
-   * Search bar toggle
-   */
+   
   if (select('.search-bar-toggle')) {
     on('click', '.search-bar-toggle', function(e) {
       select('.search-bar').classList.toggle('search-bar-show')
     })
   }
 
-  /**
-   * Navbar links active state on scroll
-   */
+  
   let navbarlinks = select('#navbar .scrollto', true)
   const navbarlinksActive = () => {
     let position = window.scrollY + 200
@@ -76,9 +56,7 @@
   window.addEventListener('load', navbarlinksActive)
   onscroll(document, navbarlinksActive)
 
-  /**
-   * Toggle .header-scrolled class to #header when page is scrolled
-   */
+  
   let selectHeader = select('#header')
   if (selectHeader) {
     const headerScrolled = () => {
@@ -92,9 +70,7 @@
     onscroll(document, headerScrolled)
   }
 
-  /**
-   * Back to top button
-   */
+  
   let backtotop = select('.back-to-top')
   if (backtotop) {
     const toggleBacktotop = () => {
@@ -108,17 +84,13 @@
     onscroll(document, toggleBacktotop)
   }
 
-  /**
-   * Initiate tooltips
-   */
+  
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
   var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
 
-  /**
-   * Initiate quill editors
-   */
+  
   if (select('.quill-editor-default')) {
     new Quill('.quill-editor-default', {
       theme: 'snow'
@@ -179,9 +151,7 @@
     });
   }
 
-  /**
-   * Initiate TinyMCE Editor
-   */
+  
   const useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
 
@@ -228,21 +198,18 @@
     ],
     importcss_append: true,
     file_picker_callback: (callback, value, meta) => {
-      /* Provide file and text for the link dialog */
       if (meta.filetype === 'file') {
         callback('https://www.google.com/logos/google.jpg', {
           text: 'My text'
         });
       }
 
-      /* Provide image and alt text for the image dialog */
       if (meta.filetype === 'image') {
         callback('https://www.google.com/logos/google.jpg', {
           alt: 'My alt text'
         });
       }
 
-      /* Provide alternative source and posted for the media dialog */
       if (meta.filetype === 'media') {
         callback('movie.mp4', {
           source2: 'alt.ogg',
@@ -279,9 +246,7 @@
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
   });
 
-  /**
-   * Initiate Bootstrap validation check
-   */
+
   var needsValidation = document.querySelectorAll('.needs-validation')
 
   Array.prototype.slice.call(needsValidation)
@@ -296,17 +261,12 @@
       }, false)
     })
 
-  /**
-   * Initiate Datatables
-   */
+
   const datatables = select('.datatable', true)
   datatables.forEach(datatable => {
     new simpleDatatables.DataTable(datatable);
   })
 
-  /**
-   * Autoresize echart charts
-   */
   const mainContainer = select('#main');
   if (mainContainer) {
     setTimeout(() => {
@@ -319,61 +279,5 @@
   }
 
 })();
-
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  new ApexCharts(document.querySelector("#columnChart"), {
-    series: [{
-      name: 'Net Profit',
-      data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-    }, {
-      name: 'Revenue',
-      data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-    }, {
-      name: 'Free Cash Flow',
-      data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-    }],
-    chart: {
-      type: 'bar',
-      height: 350
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: '55%',
-        endingShape: 'rounded'
-      },
-    },
-    dataLabels: {
-      enabled: false
-    },
-    stroke: {
-      show: true,
-      width: 2,
-      colors: ['transparent']
-    },
-    xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-    },
-    yaxis: {
-      title: {
-        text: '$ (thousands)'
-      }
-    },
-    fill: {
-      opacity: 1
-    },
-    tooltip: {
-      y: {
-        formatter: function(val) {
-          return "$ " + val + " thousands"
-        }
-      }
-    }
-  }).render();
-});
-
 
 

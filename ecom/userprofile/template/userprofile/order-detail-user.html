@@ -1,16 +1,60 @@
 {% extends 'userprofile/profile.html' %}
 {% block titleprofile %}
-Track order
-{% endblock %}
+ order Items details 
+ {% endblock %}
 {% block details %}
 <div id="per-detail-div" style="overflow: auto;justify-content: left;" class="col-2-div-order-detail col-7 col-md-4 col-lg-3">
     <h1 style="font-size: 1rem;margin-bottom: 15px; margin-top: 5px;">Shipping bag</h1>
  
-    {% for order_item in order.order_items.all %}
-    <img src="{{order_item.product.product_image_set.first.image.url}}" alt="">
-   <div class="per-sidebar-labels" style="font-size: 0.6rem;">{{ order_item.product.product_name }}</div> <br>
-   {% endfor %}
+    {% if order.is_deleted == True %}
+   <div class="per-sidebar-labels" style="font-size: 0.6rem;">Your Order have been deleted</div> <br>
 
-   <a href="{% url 'userprofile:delete-order' id=order.id %}">delete</a>
+{% else %}
+    {% for order_item in order.order_items.all %}
+    
+    <div style="display: flex;">
+    <img style="width: 60px;height: 60px;" src="{{order_item.product.product_image_set.first.image.url}}" alt="">
+    <div style="display: flex;flex-direction: column;">
+   <div class="per-sidebar-labels" style="font-size: 0.7rem;">{{ order_item.product.product_name }}</div> <br>
+   <div class="per-sidebar-labels" style="font-size: 0.6rem;">quantity: {{ order_item.quantity }}</div> <br>
+   <div class="per-sidebar-labels" style="font-size: 0.6rem;">shipping price: {{ order_item.shipping_option.shipping_price }}</div> <br>
+
+     {% if order_item.product.tax_rate %}
+   <div class="per-sidebar-labels" style="font-size: 0.6rem;">tax: {{ order_item.product.tax_rate.rate }}</div> <br>
+
+     {% endif %}
+   <div class="per-sidebar-labels" style="font-size: 0.6rem;">Sub Total: {{ order_item.total }}</div> <br></div>
+</div>
+   
+<hr>
+
+   {% endfor %}{% endif %}
+
+   {% if order.is_deleted == False %}
+   <div class="per-sidebar-labels" style="font-size: 0.6rem;">{{order.shipping_address}}</div> <br>
+
+   
+
+   {% if order.coupon %}
+<div class="per-sidebar-labels" style="font-size: 0.6rem;">coupon: {{ order.coupon.discount_percentage }}%</div>
+{% endif %}
+
+
+{% if order.paid_amount %}
+<div class="per-sidebar-labels" style="font-size: 0.6rem;">Paid amount: {{ order.paid_amount }}</div>
+{% endif %}
+
+
+
+
+<div class="per-sidebar-labels" style="font-size: 0.6rem;">Total: {{ order.total }}</div>
+
+<br>
+
+<a href="{% url 'userprofile:invoice-order' id=order.id %}" class="text-success">Downlaod invoice</a>
+
+<br>
+   <a href="{% url 'userprofile:delete-order' id=order.id %}" class="text-danger">Cancel order</a>
+{% endif %}
 </div> 
 {% endblock %}

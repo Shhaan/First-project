@@ -1,0 +1,151 @@
+{% extends 'usermain/Login.html' %}
+
+{% block content %}  
+<div style="display: flex;flex-direction:row;margin-top: 12rem;justify-content: space-around;">
+ 
+<div class="col-4   col-md-5 col-lg-4" >
+  {% block stage %}
+  <hr class="col-4   col-md-5 col-lg-4" id="hr-123" style="background: black;  height: 3px;  position: absolute; top: 214px;">
+  <div style="display: flex; position: relative;justify-content: space-around;">
+    <div class="stage-checkout" style="position: absolute;bottom: 41px;background-color: rgb(54, 54, 141);color: #fff;border: none;left: 15px;">1</div>
+    <div class="stage-checkout" style="position: absolute;bottom: 41px;background-color: rgb(255, 255, 255);color: #000000;right: 15px;">2</div>
+
+  
+  
+  </div>
+  {% endblock %}
+{% block form %}
+<form action="{% url 'userorder:bulk-buy'  %}" method="post">
+  {% csrf_token %}
+    <div class="row">
+        <div class="col pe-0">
+          <input type="text" name="f_name" class="form-control" placeholder="First name">
+          {% if errors.First_name %}
+          <h1 class="signup-errors mt-0">{{errors.First_name}}</h1>
+         {% endif %}
+        </div> <br>
+        <div class="col ps-0">
+          <input type="text" class="form-control" name="l_name" placeholder="Last name">
+          {% if errors.last_name %}
+          <h1 class="signup-errors mt-0">{{errors.last_name}}</h1>
+         {% endif %}
+        </div>
+      </div><br>
+    <div class="form-group">
+       <input type="text" class="form-control" id="inputPhone" name="phone" placeholder="Phone">
+       {% if errors.Number %}
+       <h1 class="signup-errors mt-0">{{errors.Number}}</h1>
+      {% endif %}
+    </div><br>
+    <div class="form-group">
+       <textarea name="Address"  cols="30" rows="10" class="form-control" id="inputAddress" placeholder="Address"></textarea>
+       {% if errors.Address %}
+       <h1 class="signup-errors mt-0">{{errors.Address}}</h1>
+      {% endif %}
+      </div><br>
+      <div class="form-group ">
+
+        <select class="form-control" name="ship" id="ship">
+          {% for i in ship %}
+          <option value="{{i}}">{{i}}  Rs.{{i.shipping_price}}</option>
+          {% endfor %}
+        </select>
+    
+      </div><br>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" name="country" placeholder="Country" id="inpuCountry">
+        {% if errors.country %}
+       <h1 class="signup-errors mt-0">{{errors.country}}</h1>
+      {% endif %}
+      </div><br>
+
+
+      
+      
+      
+
+      <div class="form-group col-md-4">
+        <input type="text" class="form-control" name="state" placeholder="State" id="inputstate">
+        {% if errors.state %}
+        <h1 class="signup-errors mt-0">{{errors.state}}</h1>
+       {% endif %}
+
+      </div><br>
+
+      <div class="form-group col-md-4">
+        <input type="text" class="form-control" name="district" placeholder="District" id="inputdis">
+        {% if errors.district %}
+        <h1 class="signup-errors mt-0">{{errors.district}}</h1>
+       {% endif %}
+
+      </div><br>
+
+      <div class="form-group col-8 col-md-4">
+         <input type="text" placeholder="Postal Code" name="postalcode" class="form-control" id="inputZip">
+         {% if errors.postalcode %}
+         <h1 class="signup-errors mt-0">{{errors.postalcode}}</h1>
+        {% endif %}
+      </div>
+    </div><br>
+    <div class="form-group text-end">
+     
+    <button type="submit" class="btn btn-primary ">Countinue</button></div>
+  </form>
+  {% endblock %}
+
+</div>
+
+
+<div class="col-5 div-product-detail-checkout col-md-4 col-lg-3 pt-3" style="    overflow: auto;">
+  
+  {% for i in cart_item %}
+  <div style="display: flex;" id="detail-product-checkout-div">
+    <img class="m-3 image-checkout" style="width: 90px;" src="{{i.product.product_image_set.first.image.url}}" alt="">
+    <div   style="display: flex;flex-direction: column;" class="m-1">
+      <h1 class="productname">{{i.product.product_name}}</h1>
+    
+    <h1 class="productname">Quantity :{{i.quantity}}</h1>
+    <h3 id="productprice">Rs.{{i.product.product_price}}</h3> 
+   {% block shipping %}  
+    
+    {% endblock %}
+    {% if i.product.tax_rate %}
+    <h3 id="productprice">Tax.{{i.product.tax_rate.rate}}</h3> 
+{% endif %}
+
+     </div>
+
+  </div>
+  <div class="mt-5">
+    <hr class="col-8 m-auto">
+  </div>
+  {% endfor %}
+  {% block coupen%}
+ 
+{% endblock %}
+
+{% block total %}
+
+
+
+<div class="mt-3 ms-3">
+   {% if c %}
+  <h1 class="productname">Category Offers : {{c}}</h1>
+{% endif %}
+  
+  <h1 class="productname">Total : {{t}}</h1>
+</div>
+
+{% endblock %}
+</div>
+
+
+</div>
+ {% endblock %}
+
+ {% block static %}
+ {% load static %}
+ <link rel="stylesheet" href="{% static 'userorder/css/style.css'  %}">
+ {% endblock %}

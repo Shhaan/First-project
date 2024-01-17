@@ -5,28 +5,31 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('adminhome', '0006_order'),
+        ("adminhome", "0006_order"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='cart',
-            name='items',
+            model_name="cart",
+            name="items",
         ),
         migrations.AddField(
-            model_name='cart',
-            name='product',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='adminhome.products'),
+            model_name="cart",
+            name="product",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="adminhome.products",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='cart',
-            name='quantity',
+            model_name="cart",
+            name="quantity",
             field=models.PositiveIntegerField(default=1),
         ),
         migrations.DeleteModel(
-            name='CartItem',
+            name="CartItem",
         ),
     ]

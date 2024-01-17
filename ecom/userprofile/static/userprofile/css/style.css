@@ -36,7 +36,7 @@
     flex-direction: column;
 }
 #per-sidebar{
-    height: 260px;
+    height: 317px;
     background-color: #8D6E63;
     border-radius: 18px;
     display: flex;
@@ -57,7 +57,7 @@
    
 
     #per-sidebar{
-        height: 205px;}
+        height: 307px;}
         #per-detail-div{
              
               height: 300px;}

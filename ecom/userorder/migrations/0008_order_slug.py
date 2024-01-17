@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('userorder', '0007_order_is_deleted'),
+        ("userorder", "0007_order_is_deleted"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='order',
-            name='slug',
+            model_name="order",
+            name="slug",
             field=models.SlugField(blank=True, max_length=255, unique=True),
         ),
     ]

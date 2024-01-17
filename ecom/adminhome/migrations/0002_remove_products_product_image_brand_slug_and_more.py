@@ -5,37 +5,50 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('adminhome', '0001_initial'),
+        ("adminhome", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='products',
-            name='product_image',
+            model_name="products",
+            name="product_image",
         ),
         migrations.AddField(
-            model_name='brand',
-            name='slug',
+            model_name="brand",
+            name="slug",
             field=models.SlugField(blank=True, null=True, unique=True),
         ),
         migrations.AddField(
-            model_name='category',
-            name='slug',
+            model_name="category",
+            name="slug",
             field=models.SlugField(blank=True, null=True, unique=True),
         ),
         migrations.AddField(
-            model_name='products',
-            name='slug',
+            model_name="products",
+            name="slug",
             field=models.SlugField(blank=True, null=True, unique=True),
         ),
         migrations.CreateModel(
-            name='product_image',
+            name="product_image",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='Products')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='adminhome.products')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="Products")),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="adminhome.products",
+                    ),
+                ),
             ],
         ),
     ]
